@@ -1,0 +1,11 @@
+<?php
+
+declare(strict_types=1);
+
+// Internal permission notes must remain here and are never exposed by the gallery view.
+// Replace abstract assets with approved photographs; consent_confirmed must remain true for publication.
+return [
+    ['id' => 'software-learning', 'album' => 'Practical learning', 'type' => 'image', 'title' => 'Software learning', 'category' => 'Software classes', 'image' => '/assets/images/abstract-class.svg', 'srcset' => '', 'video_url' => '', 'alt' => 'Abstract blue composition representing a practical software class', 'caption' => 'Practical software learning, represented with a branded abstract visual until approved class media is added.', 'date' => '', 'location' => '', 'consent_confirmed' => true, 'subject_type' => 'none', 'photographer' => '', 'image_owner' => 'SkillsPark Tech Hub', 'internal_permission_note' => 'Abstract visual; no personal data.', 'published' => true, 'sort_order' => 1],
+    ['id' => 'hardware-learning', 'album' => 'Practical learning', 'type' => 'image', 'title' => 'Hardware learning', 'category' => 'Hardware classes', 'image' => '/assets/images/abstract-hardware.svg', 'srcset' => '', 'video_url' => '', 'alt' => 'Abstract orange and navy composition representing computer hardware learning', 'caption' => 'Hands-on technical learning, represented with a branded abstract visual until approved class media is added.', 'date' => '', 'location' => '', 'consent_confirmed' => true, 'subject_type' => 'none', 'photographer' => '', 'image_owner' => 'SkillsPark Tech Hub', 'internal_permission_note' => 'Abstract visual; no personal data.', 'published' => true, 'sort_order' => 2],
+    ['id' => 'creative-projects', 'album' => 'Projects', 'type' => 'image', 'title' => 'Creative projects', 'category' => 'Projects', 'image' => '/assets/images/abstract-creative.svg', 'srcset' => '', 'video_url' => '', 'alt' => 'Abstract green, blue and orange shapes representing creative technology projects', 'caption' => 'Creative project work, represented with a branded abstract visual until approved project media is added.', 'date' => '', 'location' => '', 'consent_confirmed' => true, 'subject_type' => 'none', 'photographer' => '', 'image_owner' => 'SkillsPark Tech Hub', 'internal_permission_note' => 'Abstract visual; no personal data.', 'published' => true, 'sort_order' => 3],
+];

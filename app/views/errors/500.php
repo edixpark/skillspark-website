@@ -1,0 +1,1 @@
+<section class="error-page"><div class="container"><p class="error-code">500</p><h1>We hit a temporary problem.</h1><p>The technical details have been logged privately. Please try again shortly or use a verified direct contact method.</p><a class="button" href="<?= function_exists('url') ? h(url('/')) : '/' ?>">Return Home</a></div></section>

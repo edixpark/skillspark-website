@@ -1,0 +1,13 @@
+{
+  "name": "skillspark/website",
+  "description": "Public website for SkillsPark Tech Hub",
+  "type": "project",
+  "require": {
+    "php": ">=8.2",
+    "phpmailer/phpmailer": "^6.10"
+  },
+  "config": {
+    "sort-packages": true,
+    "optimize-autoloader": true
+  }
+}

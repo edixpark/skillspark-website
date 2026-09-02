@@ -1,0 +1,9 @@
+{
+  "name": "SkillsPark Tech Hub",
+  "short_name": "SkillsPark",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f6f8fb",
+  "theme_color": "#071a3a",
+  "icons": [{"src":"/assets/brand/favicon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}
