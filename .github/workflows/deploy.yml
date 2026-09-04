@@ -1,0 +1,64 @@
+name: Deploy SkillsPark
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: skillspark-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy to production
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Configure restricted SSH access
+        shell: bash
+        env:
+          DEPLOY_KEY: ${{ secrets.SKILLSPARK_SSH_KEY }}
+          KNOWN_HOSTS: ${{ secrets.SKILLSPARK_KNOWN_HOSTS }}
+        run: |
+          set -euo pipefail
+
+          test -n "$DEPLOY_KEY"
+          test -n "$KNOWN_HOSTS"
+
+          install -d -m 700 "$HOME/.ssh"
+
+          printf '%s\n' "$DEPLOY_KEY" \
+            > "$HOME/.ssh/skillspark_actions"
+
+          printf '%s\n' "$KNOWN_HOSTS" \
+            > "$HOME/.ssh/known_hosts"
+
+          chmod 600 "$HOME/.ssh/skillspark_actions"
+          chmod 600 "$HOME/.ssh/known_hosts"
+
+      - name: Deploy SkillsPark
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          ssh \
+            -T \
+            -p 22 \
+            -i "$HOME/.ssh/skillspark_actions" \
+            -o BatchMode=yes \
+            -o IdentitiesOnly=yes \
+            -o StrictHostKeyChecking=yes \
+            -o UserKnownHostsFile="$HOME/.ssh/known_hosts" \
+            skillspark-deploy@187.124.38.233
+
+      - name: Remove temporary SSH credentials
+        if: always()
+        shell: bash
+        run: |
+          rm -f "$HOME/.ssh/skillspark_actions"
