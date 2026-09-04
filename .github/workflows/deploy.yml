@@ -33,14 +33,17 @@ jobs:
 
           install -d -m 700 "$HOME/.ssh"
 
-          printf '%s\n' "$DEPLOY_KEY" \
-            > "$HOME/.ssh/skillspark_actions"
+          printf '%s\n' "$DEPLOY_KEY" |
+            tr -d '\r' > "$HOME/.ssh/skillspark_actions"
 
-          printf '%s\n' "$KNOWN_HOSTS" \
-            > "$HOME/.ssh/known_hosts"
+          printf '%s\n' "$KNOWN_HOSTS" |
+            tr -d '\r' > "$HOME/.ssh/known_hosts"
 
           chmod 600 "$HOME/.ssh/skillspark_actions"
           chmod 600 "$HOME/.ssh/known_hosts"
+
+          ssh-keygen -y -f "$HOME/.ssh/skillspark_actions" \
+            > /dev/null
 
       - name: Deploy SkillsPark
         shell: bash
