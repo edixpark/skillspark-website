@@ -7,6 +7,7 @@ return [
     'env' => 'production',
     'debug' => false,
     'base_url' => 'https://skillspark.edixpark.com',
+    'base_path' => '',
     'contact' => [
         'email' => 'hello@example.com',
         'phone' => '+2340000000000',

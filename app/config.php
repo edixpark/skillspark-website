@@ -6,6 +6,7 @@ return [
     'env' => 'production',
     'debug' => false,
     'base_url' => 'https://skillspark.edixpark.com',
+    'base_path' => '',
     'timezone' => 'Africa/Lagos',
     'session_name' => 'skillspark_session',
     'asset_version' => '1.0.0',

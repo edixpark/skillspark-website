@@ -33,7 +33,6 @@ function url(string $path = '/'): string
 {
     $base = rtrim((string) config('base_url', ''), '/');
     $path = '/' . ltrim($path, '/');
-    if (config('env') === 'local') return $path;
     return $base . ($path === '/' ? '' : $path);
 }
 
@@ -46,6 +45,11 @@ function current_path(): string
 {
     $path = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?: '/';
     $path = '/' . trim(rawurldecode($path), '/');
+    $basePath = '/' . trim((string) config('base_path', ''), '/');
+    if ($basePath !== '/') {
+        if ($path === $basePath) $path = '/';
+        elseif (str_starts_with($path, $basePath . '/')) $path = substr($path, strlen($basePath)) ?: '/';
+    }
     return $path === '' ? '/' : $path;
 }
 

@@ -2,7 +2,18 @@
 
 A lightweight, production-oriented public website built with PHP 8.2, semantic HTML, custom CSS and vanilla JavaScript. It has no database, CMS, frontend framework or production Node.js requirement.
 
-## Run locally
+## Run through the XAMPP Control Panel
+
+The current XAMPP installation already uses an EdixPark virtual host, so SkillsPark needs its own isolated local hostname.
+
+1. Add the contents of `xampp-skillspark-vhost.conf` to `C:\xampp\apache\conf\extra\httpd-vhosts.conf`.
+2. Add `127.0.0.1 skillspark.local` to `C:\Windows\System32\drivers\etc\hosts` using an Administrator editor.
+3. Restart Apache from the XAMPP Control Panel.
+4. Open `http://skillspark.local`.
+
+MySQL is not required for SkillsPark.
+
+## Alternative local server
 
 ```bash
 cp config/local.example.php config/local.php
@@ -16,7 +27,7 @@ Copy-Item config/local.example.php config/local.php
 C:\xampp\php\php.exe -S 127.0.0.1:8000 server.php
 ```
 
-Open `http://127.0.0.1:8000`. Set `env` to `local` and `base_url` to `http://127.0.0.1:8000` in `config/local.php` for local canonical URLs.
+For this alternative, temporarily set `base_url` to `http://127.0.0.1:8000` in `config/local.php`, then open `http://127.0.0.1:8000`.
 
 PHPMailer is the only optional runtime package:
 
