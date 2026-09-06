@@ -106,7 +106,10 @@ $founder = content('founder');
 <section class="section story-block">
     <div class="container story-block__grid">
         <div class="story-art reveal">
-            <img src="<?= h(asset('images/story-abstract.svg')) ?>" width="720" height="620" loading="lazy" alt="Abstract editorial composition representing the SkillsPark story">
+            <picture>
+                <source type="image/webp" srcset="<?= h(asset('images/story/skillspark-learning-space-wide-768.webp')) ?> 768w, <?= h(asset('images/story/skillspark-learning-space-wide-1200.webp')) ?> 1200w, <?= h(asset('images/story/skillspark-learning-space-wide-1600.webp')) ?> 1600w" sizes="(max-width: 860px) calc(100vw - 32px), 50vw">
+                <img src="<?= h(asset('images/story/skillspark-learning-space-wide-768.jpg')) ?>" srcset="<?= h(asset('images/story/skillspark-learning-space-wide-768.jpg')) ?> 768w, <?= h(asset('images/story/skillspark-learning-space-wide-1200.jpg')) ?> 1200w, <?= h(asset('images/story/skillspark-learning-space-wide-1600.jpg')) ?> 1600w" sizes="(max-width: 860px) calc(100vw - 32px), 50vw" width="1600" height="900" loading="lazy" alt="A SkillsPark learning space with participants working on laptops.">
+            </picture>
         </div>
         <div class="reveal">
             <p class="eyebrow">The SkillsPark story</p>
@@ -168,7 +171,10 @@ $founder = content('founder');
         <div class="gallery-grid gallery-grid--preview">
             <?php foreach (array_slice($gallery, 0, 3) as $item): ?>
                 <figure class="gallery-item reveal">
-                    <img src="<?= h(url($item['image'])) ?>" width="720" height="540" loading="lazy" alt="<?= h($item['alt']) ?>">
+                    <picture>
+                        <?php if (!empty($item['webp_srcset'])): ?><source type="image/webp" srcset="<?= h($item['webp_srcset']) ?>" sizes="(max-width: 600px) 100vw, 33vw"><?php endif; ?>
+                        <img src="<?= h(url($item['image'])) ?>" <?= !empty($item['srcset']) ? 'srcset="'.h($item['srcset']).'" sizes="(max-width: 600px) 100vw, 33vw"' : '' ?> width="720" height="540" loading="lazy" alt="<?= h($item['alt']) ?>">
+                    </picture>
                     <figcaption>
                         <strong><?= h($item['title']) ?></strong>
                         <span><?= h($item['category']) ?></span>
