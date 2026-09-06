@@ -1,67 +1,36 @@
 <?php
 $allServices = published(content('services'));
-$featuredServices = [];
+$services = [];
 
 foreach ([
     'technology-and-software',
     'web-design-and-development',
     'business-digital-transformation',
+    'branding-and-graphic-design',
 ] as $slug) {
     $service = find_by_slug($allServices, $slug);
     if ($service) {
-        $featuredServices[] = $service;
+        $services[] = $service;
     }
 }
 
-$featuredSlugs = array_column($featuredServices, 'slug');
-$secondaryServices = array_values(array_filter(
-    $allServices,
-    static fn (array $service): bool => !in_array($service['slug'], $featuredSlugs, true)
-));
-
 $trainingData = content('training');
-$programs = array_slice(array_values(array_filter(
+$programs = array_values(array_filter(
     published($trainingData['programs']),
-    static fn (array $program): bool => $program['featured'] ?? false
-)), 0, 3);
-
-$projects = array_slice(published(content('projects')), 0, 2);
+    static fn ($item) => $item['featured'] ?? false
+));
+$projects = published(content('projects'));
 $gallery = array_values(array_filter(
     published(content('gallery')),
-    static fn (array $item): bool => ($item['consent_confirmed'] ?? false) === true
+    static fn ($item) => ($item['consent_confirmed'] ?? false) === true
 ));
-$insights = array_slice(published(content('insights')), 0, 3);
-
-$audienceLinks = [
-    [
-        'title' => 'Businesses',
-        'text' => 'Software, websites, digital transformation and creative delivery for growth.',
-        'url' => '/solutions/businesses',
-    ],
-    [
-        'title' => 'Schools & education institutions',
-        'text' => 'Education technology, staff development and practical programs.',
-        'url' => '/solutions/schools',
-    ],
-    [
-        'title' => 'Organizations',
-        'text' => 'Practical technology support for NGOs, corporate and public-sector teams.',
-        'url' => '/solutions/organizations',
-    ],
-    [
-        'title' => 'Individuals & professionals',
-        'text' => 'Technology support and skills for work, enterprise and growth.',
-        'url' => '/solutions/individuals',
-    ],
-    [
-        'title' => 'Learners & families',
-        'text' => 'Project-based technology programs for different ages and stages.',
-        'url' => '/training',
-    ],
-];
+$achievements = published(content('achievements'));
+$partners = published(content('partners'));
+$insights = published(content('insights'));
+$founder = content('founder');
 ?>
 
-<section class="hero hero--focused">
+<section class="hero">
     <div class="container hero__grid">
         <div class="hero__content reveal">
             <p class="eyebrow">Technology company, solutions hub and professional training</p>
@@ -73,138 +42,60 @@ $audienceLinks = [
             </div>
         </div>
         <div class="hero__visual reveal">
-            <img src="<?= h(asset('images/hero-abstract.svg')) ?>" width="720" height="720" alt="Branded abstract composition representing technology, practical learning and education" fetchpriority="high">
+            <img src="<?= h(asset('images/hero-abstract.svg')) ?>" width="720" height="720" alt="Branded abstract composition representing learning, business transformation and education technology" fetchpriority="high">
         </div>
     </div>
 </section>
 
-<section class="proof-strip home-positioning" aria-label="SkillsPark capabilities">
-    <div class="container proof-strip__grid">
-        <div>
-            <strong>Technology solutions</strong>
-            <span>Software, websites and practical implementation.</span>
-        </div>
-        <div>
-            <strong>Creative & transformation services</strong>
-            <span>Clearer brands, stronger digital presence and better workflows.</span>
-        </div>
-        <div>
-            <strong>Professional technology training</strong>
-            <span>Project-based learning for people and organizations.</span>
-        </div>
-    </div>
-</section>
-
-<section class="section home-services">
+<section class="section">
     <div class="container">
-        <div class="section-heading split-heading reveal">
+        <div class="section-heading reveal">
+            <p class="eyebrow">One connected hub</p>
+            <h2>Four ways SkillsPark creates useful progress.</h2>
+            <p>From first practical skills to stronger organizations and education technology, each pillar responds to a different stage of growth.</p>
+        </div>
+        <div class="pillar-grid">
+            <?php foreach ($site['pillars'] as $pillar): ?>
+                <article class="pillar-card reveal">
+                    <span><?= icon($pillar['icon']) ?></span>
+                    <h3><?= h($pillar['title']) ?></h3>
+                    <p><?= h($pillar['text']) ?></p>
+                    <a class="text-link" href="<?= h(url($pillar['url'])) ?>">Explore <?= icon('arrow') ?></a>
+                </article>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+
+<section class="section section--soft">
+    <div class="container">
+        <div class="section-heading split-heading">
             <div>
-                <p class="eyebrow">Technology services</p>
-                <h2>Build the systems and digital presence your organization needs.</h2>
-                <p>SkillsPark combines technical delivery, creative thinking and practical support to help organizations move from a clear need to a useful result.</p>
+                <p class="eyebrow">Featured services</p>
+                <h2>Practical capability for real organizational needs.</h2>
             </div>
             <a class="text-link" href="<?= h(url('/services')) ?>">View all services <?= icon('arrow') ?></a>
         </div>
-
-        <div class="card-grid card-grid--3 home-services__priority">
-            <?php foreach ($featuredServices as $item) {
+        <div class="card-grid card-grid--4">
+            <?php foreach ($services as $item) {
                 require ROOT_PATH . '/app/views/components/service-card.php';
             } ?>
         </div>
-
-        <?php if ($secondaryServices): ?>
-            <nav class="capability-list" aria-label="More SkillsPark services">
-                <?php foreach ($secondaryServices as $service): ?>
-                    <a href="<?= h(url('/services/' . $service['slug'])) ?>">
-                        <span><?= h($service['title']) ?></span>
-                        <?= icon('arrow') ?>
-                    </a>
-                <?php endforeach; ?>
-            </nav>
-        <?php endif; ?>
     </div>
 </section>
 
-<section class="section section--navy home-training">
-    <div class="container">
-        <div class="home-training__intro">
-            <div class="section-heading reveal">
-                <p class="eyebrow">Professional technology training</p>
-                <h2>Develop useful skills through guided, practical work.</h2>
-            </div>
-            <div class="reveal">
-                <p>Programs are organized for children, students, professionals, schools and organizations. Every format emphasizes practice, responsible technology use and work learners can explain.</p>
-                <a class="text-link text-link--light" href="<?= h(url('/training/programs')) ?>">Explore all programs <?= icon('arrow') ?></a>
-            </div>
-        </div>
-
-        <div class="card-grid card-grid--3 home-training__programs">
-            <?php foreach ($programs as $item) {
-                require ROOT_PATH . '/app/views/components/program-card.php';
-            } ?>
-        </div>
-    </div>
-</section>
-
-<section class="section section--soft home-impact">
-    <div class="container">
-        <div class="section-heading split-heading reveal">
-            <div>
-                <p class="eyebrow">Real work & impact</p>
-                <h2>Evidence presented clearly, without inflated claims.</h2>
-                <p>SkillsPark publishes verified activities, approved media and outcomes that can be stated responsibly.</p>
-            </div>
-            <a class="text-link" href="<?= h(url('/work')) ?>">Explore work & impact <?= icon('arrow') ?></a>
-        </div>
-
-        <div class="home-impact__grid">
-            <div class="case-list">
-                <?php foreach ($projects as $project): ?>
-                    <article class="case-row reveal">
-                        <div>
-                            <span class="tag"><?= h($project['category']) ?></span>
-                            <h3><a href="<?= h(url('/work/case-studies/' . $project['slug'])) ?>"><?= h($project['title']) ?></a></h3>
-                            <p><?= h($project['objective']) ?></p>
-                        </div>
-                        <a class="circle-link" href="<?= h(url('/work/case-studies/' . $project['slug'])) ?>" aria-label="Read <?= h($project['title']) ?>"><?= icon('arrow') ?></a>
-                    </article>
-                <?php endforeach; ?>
-            </div>
-
-            <?php if ($gallery): ?>
-                <?php $galleryItem = $gallery[0]; ?>
-                <a class="impact-media reveal" href="<?= h(url('/gallery')) ?>">
-                    <img src="<?= h(url($galleryItem['image'])) ?>" width="720" height="540" loading="lazy" alt="<?= h($galleryItem['alt']) ?>">
-                    <span>
-                        <strong><?= h($galleryItem['title']) ?></strong>
-                        <small>View approved activity media <?= icon('arrow') ?></small>
-                    </span>
-                </a>
-            <?php else: ?>
-                <a class="impact-media impact-media--empty reveal" href="<?= h(url('/work/case-studies')) ?>">
-                    <span>
-                        <strong>Explore documented work</strong>
-                        <small>Read the available case studies <?= icon('arrow') ?></small>
-                    </span>
-                </a>
-            <?php endif; ?>
-        </div>
-    </div>
-</section>
-
-<section class="section home-audiences">
+<section class="section audience-section">
     <div class="container">
         <div class="section-heading reveal">
-            <p class="eyebrow">Find your starting point</p>
-            <h2>Choose the path closest to your current need.</h2>
+            <p class="eyebrow">Solutions by audience</p>
+            <h2>Start with your context, not a catalogue.</h2>
         </div>
-        <div class="audience-links">
-            <?php foreach ($audienceLinks as $audience): ?>
-                <a class="audience-link reveal" href="<?= h(url($audience['url'])) ?>">
-                    <span>
-                        <strong><?= h($audience['title']) ?></strong>
-                        <small><?= h($audience['text']) ?></small>
-                    </span>
+        <div class="audience-grid">
+            <?php foreach ($site['audiences'] as $index => $audience): ?>
+                <a class="audience-card reveal" href="<?= h(url('/solutions/' . $audience['slug'])) ?>">
+                    <span>0<?= $index + 1 ?></span>
+                    <h3><?= h($audience['title']) ?></h3>
+                    <p><?= h($audience['text']) ?></p>
                     <?= icon('arrow') ?>
                 </a>
             <?php endforeach; ?>
@@ -212,15 +103,128 @@ $audienceLinks = [
     </div>
 </section>
 
-<section class="section edix-feature home-edixpark">
+<section class="section story-block">
+    <div class="container story-block__grid">
+        <div class="story-art reveal">
+            <img src="<?= h(asset('images/story-abstract.svg')) ?>" width="720" height="620" loading="lazy" alt="Abstract editorial composition representing the SkillsPark story">
+        </div>
+        <div class="reveal">
+            <p class="eyebrow">The SkillsPark story</p>
+            <h2>Teaching technology was the beginning—not the boundary.</h2>
+            <p>SkillsPark started in 2024 with a practical technology and vocational training focus in the Kano/Zaria Road area. That learn-by-doing foundation now supports a broader mission: helping people develop useful capability while helping businesses and institutions solve problems through technology, creative services and digital transformation.</p>
+            <a class="button button--outline" href="<?= h(url('/about')) ?>">Read Our Story</a>
+        </div>
+    </div>
+</section>
+
+<section class="section section--navy">
+    <div class="container">
+        <div class="section-heading split-heading">
+            <div>
+                <p class="eyebrow">Featured training</p>
+                <h2>Learning becomes valuable when it can be used.</h2>
+            </div>
+            <a class="text-link text-link--light" href="<?= h(url('/training/programs')) ?>">Explore programs <?= icon('arrow') ?></a>
+        </div>
+        <div class="card-grid card-grid--4">
+            <?php foreach ($programs as $item) {
+                require ROOT_PATH . '/app/views/components/program-card.php';
+            } ?>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="section-heading reveal">
+            <p class="eyebrow">Work & impact</p>
+            <h2>Evidence presented without inflated claims.</h2>
+            <p>Our public record grows from verified activities, approved media and outcomes that can be stated responsibly.</p>
+        </div>
+        <div class="case-list">
+            <?php foreach ($projects as $project): ?>
+                <article class="case-row reveal">
+                    <div>
+                        <span class="tag"><?= h($project['category']) ?></span>
+                        <h3><a href="<?= h(url('/work/case-studies/' . $project['slug'])) ?>"><?= h($project['title']) ?></a></h3>
+                        <p><?= h($project['objective']) ?></p>
+                    </div>
+                    <a class="circle-link" href="<?= h(url('/work/case-studies/' . $project['slug'])) ?>" aria-label="Read <?= h($project['title']) ?>"><?= icon('arrow') ?></a>
+                </article>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+
+<section class="section section--soft">
+    <div class="container">
+        <div class="section-heading split-heading">
+            <div>
+                <p class="eyebrow">Gallery preview</p>
+                <h2>Learning, making and collaboration.</h2>
+            </div>
+            <a class="text-link" href="<?= h(url('/gallery')) ?>">Open gallery <?= icon('arrow') ?></a>
+        </div>
+        <div class="gallery-grid gallery-grid--preview">
+            <?php foreach (array_slice($gallery, 0, 3) as $item): ?>
+                <figure class="gallery-item reveal">
+                    <img src="<?= h(url($item['image'])) ?>" width="720" height="540" loading="lazy" alt="<?= h($item['alt']) ?>">
+                    <figcaption>
+                        <strong><?= h($item['title']) ?></strong>
+                        <span><?= h($item['category']) ?></span>
+                    </figcaption>
+                </figure>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="section-heading reveal">
+            <p class="eyebrow">Verified milestones</p>
+            <h2>A young organization with a clear direction.</h2>
+        </div>
+        <div class="timeline timeline--horizontal">
+            <?php foreach ($achievements as $item): ?>
+                <article class="reveal">
+                    <span><?= h($item['date'] ?: $item['category']) ?></span>
+                    <h3><?= h($item['title']) ?></h3>
+                    <p><?= h($item['summary']) ?></p>
+                </article>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+
+<?php if ($partners): ?>
+    <section class="section section--soft">
+        <div class="container">
+            <div class="section-heading">
+                <p class="eyebrow">Partnerships</p>
+                <h2>Collaborating with care.</h2>
+            </div>
+            <div class="card-grid">
+                <?php foreach ($partners as $partner): ?>
+                    <article class="card">
+                        <h3><?= h($partner['name']) ?></h3>
+                        <p><?= h($partner['summary']) ?></p>
+                    </article>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </section>
+<?php endif; ?>
+
+<section class="section edix-feature">
     <div class="container edix-feature__grid">
         <div class="reveal">
-            <p class="eyebrow">Education technology product</p>
-            <h2>EdixPark supports school operations and online learning.</h2>
-            <p>SkillsPark is the technology company and solutions hub. EdixPark is its related education technology product direction, focused on digital infrastructure for educational institutions.</p>
+            <p class="eyebrow">SkillsPark product</p>
+            <h2>EdixPark: digital infrastructure for school operations and online learning.</h2>
+            <p>EdixPark connects the founder’s journey from teaching technology to building technology for educational institutions.</p>
             <a class="button" href="<?= h(url('/edixpark')) ?>">Discover EdixPark</a>
         </div>
-        <div class="product-map product-map--compact reveal" aria-label="EdixPark focus areas">
+        <div class="product-map reveal">
             <?php foreach (['Administration', 'Academics', 'Communication', 'Learning', 'Reporting'] as $area): ?>
                 <span><?= h($area) ?></span>
             <?php endforeach; ?>
@@ -228,51 +232,64 @@ $audienceLinks = [
     </div>
 </section>
 
-<section class="section section--soft home-company">
-    <div class="container home-company__grid">
-        <article class="home-company__story reveal">
-            <p class="eyebrow">About SkillsPark</p>
-            <h2>Practical learning grew into practical technology delivery.</h2>
-            <p>Founded in 2024 and historically associated with the Kano/Zaria Road area, SkillsPark is developing from a training-focused organization into a broader technology company serving people, businesses and institutions.</p>
-            <a class="text-link" href="<?= h(url('/about')) ?>">Read the SkillsPark story <?= icon('arrow') ?></a>
-        </article>
-        <article class="home-company__abuja reveal">
-            <p class="eyebrow">Serving Abuja</p>
-            <h2>Technology support for organizations ready to improve.</h2>
-            <p>SkillsPark is expanding its service and business-development presence in Abuja. No physical Abuja office is claimed.</p>
-            <a class="button button--outline" href="<?= h(url('/abuja')) ?>">Explore Abuja Solutions</a>
-        </article>
+<section class="section">
+    <div class="container founder-preview">
+        <div class="founder-placeholder reveal" aria-hidden="true"><?= icon('person') ?></div>
+        <div class="reveal">
+            <p class="eyebrow">The founder’s journey</p>
+            <h2>From teaching technology to building technology.</h2>
+            <p><?= h($founder['journey']) ?></p>
+            <a class="text-link" href="<?= h(url('/founder')) ?>">View founder profile <?= icon('arrow') ?></a>
+        </div>
     </div>
 </section>
 
-<?php if ($insights): ?>
-    <section class="section home-insights">
+<?php if (published(content('testimonials'))): ?>
+    <section class="section section--soft">
         <div class="container">
-            <div class="section-heading split-heading reveal">
-                <div>
-                    <p class="eyebrow">Insights & tutorials</p>
-                    <h2>Useful thinking for learning and digital progress.</h2>
-                </div>
-                <a class="text-link" href="<?= h(url('/insights')) ?>">View all insights <?= icon('arrow') ?></a>
-            </div>
-            <div class="insight-list">
-                <?php foreach ($insights as $article): ?>
-                    <a class="insight-row reveal" href="<?= h(url('/insights/' . $article['slug'])) ?>">
-                        <span><?= h($article['category']) ?></span>
-                        <strong><?= h($article['title']) ?></strong>
-                        <?= icon('arrow') ?>
-                    </a>
-                <?php endforeach; ?>
+            <div class="section-heading">
+                <p class="eyebrow">Testimonials</p>
+                <h2>What participants and partners say.</h2>
             </div>
         </div>
     </section>
 <?php endif; ?>
 
+<section class="section abuja-callout">
+    <div class="container abuja-callout__inner reveal">
+        <div>
+            <p class="eyebrow">Abuja service presence</p>
+            <h2>Technology, creative services and practical improvement for Abuja organizations.</h2>
+            <p>Serving schools, SMEs, startups, NGOs, training institutions and teams through scoped engagements.</p>
+        </div>
+        <a class="button" href="<?= h(url('/abuja')) ?>">Explore Abuja Solutions</a>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="section-heading split-heading">
+            <div>
+                <p class="eyebrow">Insights & tutorials</p>
+                <h2>Useful thinking for learning and digital growth.</h2>
+            </div>
+            <a class="text-link" href="<?= h(url('/insights')) ?>">View all insights <?= icon('arrow') ?></a>
+        </div>
+        <div class="card-grid card-grid--3">
+            <?php foreach (array_slice($insights, 0, 3) as $article): ?>
+                <article class="insight-card reveal">
+                    <span class="tag"><?= h($article['category']) ?></span>
+                    <h3><a href="<?= h(url('/insights/' . $article['slug'])) ?>"><?= h($article['title']) ?></a></h3>
+                    <p><?= h($article['summary']) ?></p>
+                    <a class="text-link" href="<?= h(url('/insights/' . $article['slug'])) ?>">Read insight <?= icon('arrow') ?></a>
+                </article>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+
 <?php
-$ctaEyebrow = 'Start with the need';
-$ctaTitle = 'What could technology help you build or improve?';
-$ctaText = 'Tell SkillsPark about your organization, audience or challenge. We will help you identify a practical next step.';
-$ctaLabel = 'Request a Consultation';
-$ctaUrl = '/request-consultation';
+$ctaTitle = 'What could technology help you do better?';
+$ctaText = 'Bring the goal, the challenge or the early idea. We will help you shape a practical next step.';
 require ROOT_PATH . '/app/views/components/cta.php';
 ?>
