@@ -33,6 +33,25 @@ foreach (content('gallery') as $item) {
     }
 }
 
+$evidenceStatuses = ['verified', 'needs_details', 'needs_media', 'needs_permission', 'draft'];
+$evidenceGroups = [
+    'impact stories' => content('impact')['stories'],
+    'projects' => content('projects'),
+    'achievements' => content('achievements'),
+    'partners' => content('partners'),
+];
+foreach ($evidenceGroups as $label => $items) {
+    foreach ($items as $item) {
+        $identifier = $item['id'] ?? $item['slug'] ?? 'unknown';
+        if (!in_array($item['evidence_status'] ?? '', $evidenceStatuses, true)) {
+            $errors[] = "{$label} record '{$identifier}' has an invalid or missing evidence status.";
+        }
+        if (($item['evidence_status'] ?? '') !== 'verified' && empty($item['verification_needed'])) {
+            $errors[] = "{$label} record '{$identifier}' needs a verification checklist.";
+        }
+    }
+}
+
 if (!config('contact.email')) $warnings[] = 'Contact email is not configured.';
 if (!config('contact.phone')) $warnings[] = 'Contact phone is not configured.';
 if (!config('contact.whatsapp')) $warnings[] = 'WhatsApp number is not configured.';

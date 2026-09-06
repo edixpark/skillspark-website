@@ -19,7 +19,7 @@ $programs = array_values(array_filter(
     published($trainingData['programs']),
     static fn ($item) => $item['featured'] ?? false
 ));
-$projects = published(content('projects'));
+$impactStories = published(content('impact')['stories']);
 $gallery = array_values(array_filter(
     published(content('gallery')),
     static fn ($item) => ($item['consent_confirmed'] ?? false) === true
@@ -141,18 +141,18 @@ $founder = content('founder');
     <div class="container">
         <div class="section-heading reveal">
             <p class="eyebrow">Work & impact</p>
-            <h2>Evidence presented without inflated claims.</h2>
-            <p>Our public record grows from verified activities, approved media and outcomes that can be stated responsibly.</p>
+            <h2>Real activity, described with care.</h2>
+            <p>Explore practical training, learner entrepreneurship, community learning and international collaboration—without unsupported numbers or claims.</p>
         </div>
         <div class="case-list">
-            <?php foreach ($projects as $project): ?>
+            <?php foreach (array_slice($impactStories, 0, 4) as $story): ?>
                 <article class="case-row reveal">
                     <div>
-                        <span class="tag"><?= h($project['category']) ?></span>
-                        <h3><a href="<?= h(url('/work/case-studies/' . $project['slug'])) ?>"><?= h($project['title']) ?></a></h3>
-                        <p><?= h($project['objective']) ?></p>
+                        <span class="tag"><?= h($story['category']) ?></span>
+                        <h3><a href="<?= h(url($story['url'])) ?>"><?= h($story['title']) ?></a></h3>
+                        <p><?= h($story['summary']) ?></p>
                     </div>
-                    <a class="circle-link" href="<?= h(url('/work/case-studies/' . $project['slug'])) ?>" aria-label="Read <?= h($project['title']) ?>"><?= icon('arrow') ?></a>
+                    <a class="circle-link" href="<?= h(url($story['url'])) ?>" aria-label="Explore <?= h($story['title']) ?>"><?= icon('arrow') ?></a>
                 </article>
             <?php endforeach; ?>
         </div>
@@ -192,7 +192,7 @@ $founder = content('founder');
             <h2>A young organization with a clear direction.</h2>
         </div>
         <div class="timeline timeline--horizontal">
-            <?php foreach ($achievements as $item): ?>
+            <?php foreach (array_slice($achievements, 0, 3) as $item): ?>
                 <article class="reveal">
                     <span><?= h($item['date'] ?: $item['category']) ?></span>
                     <h3><?= h($item['title']) ?></h3>

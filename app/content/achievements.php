@@ -1,9 +1,11 @@
 <?php
-
 declare(strict_types=1);
 
 return [
-    ['id' => 'founded-2024', 'title' => 'SkillsPark founded', 'category' => 'Organization', 'date' => '2024', 'summary' => 'SkillsPark began its journey as a practical technology and vocational training organization.', 'published' => true, 'sort_order' => 1],
-    ['id' => 'classes-children-adults', 'title' => 'Learning across age groups', 'category' => 'Training', 'date' => '', 'summary' => 'SkillsPark has conducted software and hardware classes for both children and adults.', 'published' => true, 'sort_order' => 2],
-    ['id' => 'edixpark-product', 'title' => 'Education technology development', 'category' => 'Product', 'date' => '', 'summary' => 'The organization’s journey now includes EdixPark, connecting practical teaching experience with education technology.', 'published' => true, 'sort_order' => 3],
+    ['id' => 'founded-2024', 'title' => 'SkillsPark established', 'category' => 'Organization', 'date' => '2024', 'summary' => 'SkillsPark began as a practical technology and vocational training organization.', 'evidence_status' => 'verified', 'verification_needed' => [], 'published' => true, 'sort_order' => 1],
+    ['id' => 'classes-children-adults', 'title' => 'Software and hardware classes delivered', 'category' => 'Practical training', 'date' => '', 'summary' => 'SkillsPark has conducted software and hardware classes for children and adults.', 'evidence_status' => 'verified', 'verification_needed' => [], 'published' => true, 'sort_order' => 2],
+    ['id' => 'community-learning', 'title' => 'Free learning made available', 'category' => 'Community learning', 'date' => '', 'summary' => 'SkillsPark has provided free classes, practical workshops and free tutorials online.', 'evidence_status' => 'needs_details', 'verification_needed' => ['Dates', 'Programme records', 'Tutorial links'], 'published' => true, 'sort_order' => 3],
+    ['id' => 'learner-entrepreneurship', 'title' => 'Learner entrepreneurship outcome', 'category' => 'Learner outcome', 'date' => '', 'summary' => 'A learner trained by SkillsPark later established Advista Hub.', 'evidence_status' => 'needs_details', 'verification_needed' => ['Learner permission', 'Programme', 'Launch date', 'Supporting media'], 'published' => true, 'sort_order' => 4],
+    ['id' => 'international-collaboration', 'title' => 'International training collaboration established', 'category' => 'Partnership', 'date' => '', 'summary' => 'SkillsPark established a partnership with an Aptech computer training institute in Dubai.', 'evidence_status' => 'needs_details', 'verification_needed' => ['Official partner details', 'Date', 'Scope', 'Document and logo permissions'], 'published' => true, 'sort_order' => 5],
+    ['id' => 'edixpark-product', 'title' => 'Education technology development', 'category' => 'Product', 'date' => '', 'summary' => 'SkillsPark’s journey now includes EdixPark, connecting practical teaching experience with education technology.', 'evidence_status' => 'verified', 'verification_needed' => [], 'published' => true, 'sort_order' => 6],
 ];
