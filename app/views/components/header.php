@@ -15,12 +15,20 @@
         <nav class="site-nav" id="site-nav" aria-label="Primary" data-nav>
             <ul>
                 <?php foreach ($nav as $item): ?>
-                <li class="<?= !empty($item['children']) ? 'has-menu' : '' ?>">
-                    <a href="<?= h(url($item['url'])) ?>" <?= is_active($item['url']) ? 'aria-current="page"' : '' ?>><?= h($item['label']) ?></a>
-                    <?php if (!empty($item['children'])): ?>
+                <?php $hasMenu = !empty($item['groups']); $itemActive = nav_item_active($item); ?>
+                <li class="<?= $hasMenu ? 'has-menu' : '' ?><?= $itemActive ? ' is-active' : '' ?>">
+                    <a href="<?= h(url($item['url'])) ?>" <?= current_path() === $item['url'] ? 'aria-current="page"' : '' ?>><?= h($item['label']) ?></a>
+                    <?php if ($hasMenu): ?>
                     <button class="submenu-toggle" type="button" aria-expanded="false" aria-label="Show <?= h($item['label']) ?> menu"><?= icon('chevron') ?></button>
-                    <ul class="submenu">
-                        <?php foreach ($item['children'] as $child): ?><li><a href="<?= h(url($child['url'])) ?>"><?= h($child['label']) ?></a></li><?php endforeach; ?>
+                    <ul class="submenu<?= !empty($item['wide']) ? ' submenu--wide' : '' ?>">
+                        <?php foreach ($item['groups'] as $group): ?>
+                        <li class="submenu-group">
+                            <span><?= h($group['label']) ?></span>
+                            <ul>
+                                <?php foreach ($group['children'] as $child): ?><li><a href="<?= h(url($child['url'])) ?>" <?= current_path() === $child['url'] ? 'aria-current="page"' : '' ?>><?= h($child['label']) ?></a></li><?php endforeach; ?>
+                            </ul>
+                        </li>
+                        <?php endforeach; ?>
                     </ul>
                     <?php endif; ?>
                 </li>

@@ -12,6 +12,7 @@
     toggle.querySelector('.sr-only').textContent = 'Open menu';
     nav.classList.remove('is-open');
     document.body.classList.remove('nav-open');
+    document.querySelectorAll('.submenu-toggle').forEach(button => button.setAttribute('aria-expanded', 'false'));
   }
 
   if (toggle && nav) {

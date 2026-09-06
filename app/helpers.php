@@ -59,6 +59,14 @@ function is_active(string $path): bool
     return $path === '/' ? $current === '/' : str_starts_with($current, rtrim($path, '/'));
 }
 
+function nav_item_active(array $item): bool
+{
+    foreach (($item['active_paths'] ?? [$item['url']]) as $path) {
+        if (is_active($path)) return true;
+    }
+    return false;
+}
+
 function published(array $items): array
 {
     $items = array_filter($items, static fn (array $item): bool => ($item['published'] ?? false) === true);
