@@ -49,6 +49,8 @@ foreach ($htmlPages as $route => $html) {
     if (!preg_match_all('/(?:href|src)="([^"]+)"/', $html, $matches)) continue;
     foreach (array_unique($matches[1]) as $link) {
         $decoded = html_entity_decode($link);
+        $scheme = parse_url($decoded, PHP_URL_SCHEME);
+        if ($scheme && !in_array(strtolower($scheme), ['http', 'https'], true)) continue;
         $path = parse_url($decoded, PHP_URL_PATH);
         $host = parse_url($decoded, PHP_URL_HOST);
         if (!$path || ($host && !str_contains($base, $host))) continue;

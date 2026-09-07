@@ -108,6 +108,13 @@ function safe_external_url(string $value): string
     return filter_var($value, FILTER_VALIDATE_URL) && preg_match('/^https:\/\//i', $value) ? $value : '';
 }
 
+function whatsapp_url(string $message = ''): string
+{
+    $base = safe_external_url((string) config('contact.whatsapp_url', ''));
+    if ($base === '') return '';
+    return $message === '' ? $base : $base . '?text=' . rawurlencode($message);
+}
+
 function safe_video_embed_url(string $value): string
 {
     if (!filter_var($value, FILTER_VALIDATE_URL)) return '';

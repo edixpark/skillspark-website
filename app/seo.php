@@ -26,6 +26,15 @@ function organization_schema(): array
     ];
     $email = config('contact.email');
     if ($email) $schema['email'] = $email;
+    $telephone = config('contact.phone');
+    if ($telephone) {
+        $schema['telephone'] = $telephone;
+        $schema['contactPoint'] = ['@type' => 'ContactPoint', 'telephone' => $telephone, 'email' => $email, 'contactType' => 'customer service', 'areaServed' => 'NG', 'availableLanguage' => 'English'];
+    }
+    $schema['address'] = ['@type' => 'PostalAddress', 'streetAddress' => 'Zaria Road', 'addressRegion' => 'Kano State', 'addressCountry' => 'NG'];
+    $schema['areaServed'] = [['@type' => 'AdministrativeArea', 'name' => 'Kano State, Nigeria'], ['@type' => 'AdministrativeArea', 'name' => 'Abuja, Federal Capital Territory, Nigeria']];
+    $socials = config('contact.socials', []);
+    if ($socials) $schema['sameAs'] = array_values(array_filter(array_map(static fn (array $social): string => safe_external_url($social['url'] ?? ''), $socials)));
     return $schema;
 }
 

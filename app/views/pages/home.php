@@ -114,7 +114,7 @@ $founder = content('founder');
         <div class="reveal">
             <p class="eyebrow">The SkillsPark story</p>
             <h2>Teaching technology was the beginning—not the boundary.</h2>
-            <p>SkillsPark started in 2024 with a practical technology and vocational training focus in the Kano/Zaria Road area. That learn-by-doing foundation now supports a broader mission: helping people develop useful capability while helping businesses and institutions solve problems through technology, creative services and digital transformation.</p>
+            <p>SkillsPark started in 2024 with a practical technology and vocational training focus at Zaria Road, Kano State, Nigeria. That learn-by-doing foundation now supports a broader mission: helping people develop useful capability while helping businesses and institutions solve problems through technology, creative services and digital transformation.</p>
             <a class="button button--outline" href="<?= h(url('/about')) ?>">Read Our Story</a>
         </div>
     </div>
@@ -297,5 +297,8 @@ $founder = content('founder');
 <?php
 $ctaTitle = 'What could technology help you do better?';
 $ctaText = 'Bring the goal, the challenge or the early idea. We will help you shape a practical next step.';
+$ctaLabel = 'Request a Consultation';
+$ctaSecondaryLabel = 'WhatsApp SkillsPark';
+$ctaSecondaryUrl = whatsapp_url('Hello SkillsPark, I would like to make an enquiry.');
 require ROOT_PATH . '/app/views/components/cta.php';
 ?>

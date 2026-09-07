@@ -23,7 +23,7 @@ function route_request(string $method, string $path): void
         '/edixpark' => 'EdixPark is digital infrastructure for school operations and online learning, connected to the SkillsPark journey.',
         '/founder' => 'The founder’s journey from teaching technology through SkillsPark to building education technology with EdixPark.',
         '/insights' => 'Practical SkillsPark perspectives on technology learning, education, digital presence and organizational growth.',
-        '/contact' => 'Contact SkillsPark Tech Hub about training, services, partnerships and EdixPark.',
+        '/contact' => 'Contact SkillsPark Tech Hub for technology services and practical technology training in Kano and Abuja.',
         '/request-consultation' => 'Request a focused SkillsPark consultation for a technology, training, creative or digital transformation need.',
         '/privacy-policy' => 'How the SkillsPark website handles enquiries, cookies, media, children’s photographs, retention and privacy requests.',
         '/terms' => 'Terms for using the public SkillsPark Tech Hub website and requesting information about services.',
