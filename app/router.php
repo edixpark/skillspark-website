@@ -13,24 +13,41 @@ function route_request(string $method, string $path): void
         '/work/case-studies' => ['case-studies', 'Case Studies'], '/work/achievements' => ['achievements', 'Achievements'], '/work/partnerships' => ['partnerships', 'Partnerships'],
     ];
     $descriptions = [
-        '/' => 'Practical technology training, creative services, digital transformation and education software from SkillsPark Tech Hub.',
-        '/about' => 'The SkillsPark story, mission, values and evolution from practical training centre to technology-solutions hub.',
-        '/services' => 'Explore SkillsPark software, web, branding, media, transformation, 3D, social media and hardware services.',
-        '/training' => 'Project-based technology training for children, students, adults, schools and organizational teams.',
+        '/' => 'SkillsPark Tech Hub provides technology services, practical technology training and education technology solutions for people and organizations in Nigeria.',
+        '/about' => 'Learn how SkillsPark Tech Hub grew from practical technology training in Kano into a technology, creative-services and education-technology hub.',
+        '/services' => 'Explore SkillsPark Tech Hub technology services, including software, web development, digital transformation, branding, media and technical support.',
+        '/training' => 'Explore practical technology training from SkillsPark Tech Hub for children, students, adults, schools and organizational teams.',
         '/training/programs' => 'Explore practical SkillsPark programs in web development, design, robotics, AI productivity and hardware.',
-        '/work' => 'Verified SkillsPark case studies, activities, achievements and partnership information.',
+        '/work' => 'Explore SkillsPark Tech Hub work and impact through responsibly documented training, partnerships, learner stories and technology activity.',
         '/gallery' => 'An accessible, consent-aware visual record of SkillsPark classes, programs and project work.',
         '/edixpark' => 'EdixPark is a distinct education-technology platform built within the SkillsPark ecosystem, providing flexible digital infrastructure for schools.',
-        '/founder' => 'The founder’s journey from teaching technology through SkillsPark to building education technology with EdixPark.',
-        '/insights' => 'Practical SkillsPark perspectives on technology learning, education, digital presence and organizational growth.',
-        '/contact' => 'Contact SkillsPark Tech Hub for technology services and practical technology training in Kano and Abuja.',
-        '/request-consultation' => 'Request a focused SkillsPark consultation for a technology, training, creative or digital transformation need.',
+        '/founder' => 'A verified founder profile for SkillsPark Tech Hub is being prepared.',
+        '/insights' => 'Read practical SkillsPark Tech Hub perspectives on technology learning, digital presence and organizational improvement.',
+        '/contact' => 'Contact SkillsPark Tech Hub about technology services, practical training, school solutions or partnerships from Kano and for Abuja service delivery.',
+        '/request-consultation' => 'Discuss a technology project, software, web development or digital transformation need with SkillsPark Tech Hub.',
         '/privacy-policy' => 'How the SkillsPark website handles enquiries, cookies, media, children’s photographs, retention and privacy requests.',
         '/terms' => 'Terms for using the public SkillsPark Tech Hub website and requesting information about services.',
-        '/abuja' => 'Technology services, digital-presence support, staff training and EdixPark outreach for organizations serving Abuja.',
+        '/abuja' => 'SkillsPark Tech Hub provides technology services, practical training and digital improvement support for organizations serving Abuja and the FCT.',
         '/work/case-studies' => 'SkillsPark case studies structured around objectives, challenges, approaches and verified outcomes.',
         '/work/achievements' => 'Verified organizational, training and product milestones from SkillsPark Tech Hub.',
         '/work/partnerships' => 'SkillsPark’s approach to local and international training, technology and education partnerships.',
+    ];
+    $titles = [
+        '/' => 'SkillsPark Tech Hub | Technology Services and Practical Training',
+        '/about' => 'About SkillsPark Tech Hub | Technology, Training and EdixPark',
+        '/services' => 'Technology Services | SkillsPark Tech Hub',
+        '/training' => 'Practical Technology Training | SkillsPark Tech Hub',
+        '/training/programs' => 'Technology Training Programs | SkillsPark Tech Hub',
+        '/work' => 'Work and Impact | SkillsPark Tech Hub',
+        '/gallery' => 'SkillsPark Gallery | Practical Technology Learning',
+        '/founder' => 'Founder Profile | SkillsPark Tech Hub',
+        '/insights' => 'Technology Insights and Tutorials | SkillsPark Tech Hub',
+        '/contact' => 'Contact SkillsPark Tech Hub | Kano and Abuja Service Delivery',
+        '/request-consultation' => 'Request a Project Consultation | SkillsPark Tech Hub',
+        '/abuja' => 'Technology Services and Training for Abuja | SkillsPark Tech Hub',
+        '/work/case-studies' => 'Technology Training Case Studies | SkillsPark Tech Hub',
+        '/work/achievements' => 'SkillsPark Tech Hub Achievements and Milestones',
+        '/work/partnerships' => 'SkillsPark Tech Hub Partnerships',
     ];
 
     if ($method === 'POST' && in_array($path, ['/contact', '/request-consultation'], true)) {
@@ -49,7 +66,9 @@ function route_request(string $method, string $path): void
 
     if (isset($pages[$path])) {
         [$view, $title] = $pages[$path];
-        render('pages/' . $view, ['seo' => seo_defaults(['title' => $title . ' | SkillsPark Tech Hub', 'description' => $descriptions[$path] ?? content('site')['description']])]);
+        $seo = ['title' => $titles[$path] ?? $title . ' | SkillsPark Tech Hub', 'description' => $descriptions[$path] ?? content('site')['description']];
+        if ($path === '/founder') $seo['robots'] = 'noindex,follow,max-image-preview:large';
+        render('pages/' . $view, ['seo' => seo_defaults($seo)]);
     }
     if (preg_match('#^/services/([a-z0-9-]+)$#', $path, $match)) {
         $service = find_by_slug(content('services'), $match[1]);
@@ -83,7 +102,7 @@ function route_request(string $method, string $path): void
 
 function output_sitemap(): void
 {
-    $paths = ['/', '/about', '/services', '/training', '/training/programs', '/work', '/gallery', '/edixpark', '/founder', '/insights', '/contact', '/request-consultation', '/privacy-policy', '/terms', '/abuja', '/work/case-studies', '/work/achievements', '/work/partnerships'];
+    $paths = ['/', '/about', '/services', '/training', '/training/programs', '/work', '/gallery', '/edixpark', '/insights', '/contact', '/request-consultation', '/privacy-policy', '/terms', '/abuja', '/work/case-studies', '/work/achievements', '/work/partnerships'];
     foreach (published(content('services')) as $item) $paths[] = '/services/' . $item['slug'];
     foreach (published(content('training')['audiences']) as $item) $paths[] = '/training/' . $item['slug'];
     foreach (published(content('training')['programs']) as $item) $paths[] = '/training/program/' . $item['slug'];

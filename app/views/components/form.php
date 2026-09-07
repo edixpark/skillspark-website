@@ -9,7 +9,7 @@ function field_error(array $errors, string $name): string { return isset($errors
 <div class="form-shell" id="enquiry-form">
     <?php if ($success): ?><div class="notice notice--success" role="status"><?= h($success) ?></div><?php endif; ?>
     <?php if ($errors): ?><div class="notice notice--error" id="form-error-summary" role="alert" aria-live="assertive" tabindex="-1" data-form-error-summary><strong>Please review the form.</strong><?php if (!empty($errors['_form'])): ?> <?= h($errors['_form']) ?><?php else: ?><p>Correct the highlighted fields and try again.</p><ul><?php foreach ($errors as $name => $message): if ($name !== '_form'): ?><li><?= h($message) ?></li><?php endif; endforeach; ?></ul><?php endif; ?></div><?php endif; ?>
-    <?php if ($disabled): ?><div class="notice notice--warning" role="status"><strong>Online form delivery is not configured.</strong> Use the verified direct contact options on this page. The form will activate automatically when SMTP is configured.</div><?php endif; ?>
+    <?php if ($disabled): ?><div class="notice notice--warning" role="status"><strong>Online form delivery is unavailable at the moment.</strong> Use the verified direct contact options on this page.</div><?php endif; ?>
     <form method="post" action="<?= h(url($isConsultation ? '/request-consultation' : '/contact')) ?>" novalidate>
         <input type="hidden" name="_token" value="<?= h(csrf_token()) ?>">
         <div class="honeypot" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div>
