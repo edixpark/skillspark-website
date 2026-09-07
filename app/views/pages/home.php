@@ -227,16 +227,16 @@ $founder = content('founder');
         <div class="reveal">
             <p class="eyebrow">Education technology platform</p>
             <img class="edixpark-logo edixpark-logo--feature" src="<?= h(asset('images/edixpark/edixpark-logo.png')) ?>" width="1600" height="305" alt="EdixPark">
-            <h2>Flexible digital infrastructure for schools.</h2>
-            <p>EdixPark is SkillsPark's distinct education-technology platform, designed to give schools digital infrastructure that adapts to their operations, learning and institutional growth.</p>
+            <h2>EdixPark: digital infrastructure for operations and online learning.</h2>
+            <p>Built within the SkillsPark technology ecosystem, EdixPark gives schools and educational institutions structured tools for daily operations, branded online learning and connected digital growth through EdixPark School, Learn and Suite.</p>
             <div class="button-row"><a class="button" href="<?= h(url('/edixpark')) ?>">Explore EdixPark</a><a class="button button--outline" href="https://edixpark.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit EdixPark.com (opens in a new tab)">Visit EdixPark.com <?= icon('arrow') ?></a></div>
         </div>
         <div class="edixpark-home-panel reveal">
-            <p>Built within the SkillsPark technology ecosystem. Operates with its own product identity and platform experience.</p>
+            <p>One product family for structured operations, branded learning and connected institutional delivery.</p>
             <div>
-            <?php foreach (['Leadership & Roles', 'Academic Structure', 'Sections & Classes', 'Finance', 'Branding'] as $area): ?>
-                <span><?= h($area) ?></span>
-            <?php endforeach; ?>
+                <?php foreach (['EdixPark School', 'EdixPark Learn', 'EdixPark Suite'] as $area): ?>
+                    <span><?= h($area) ?></span>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>

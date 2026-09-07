@@ -39,6 +39,14 @@ function route_request(string $method, string $path): void
     }
     if ($method !== 'GET') render('errors/404', ['seo' => seo_defaults(['title' => 'Page not found | SkillsPark', 'robots' => 'noindex,nofollow'])], 404);
 
+    if ($path === '/edixpark') {
+        render('pages/edixpark', ['seo' => seo_defaults([
+            'title' => 'EdixPark | Education Technology Platform Built Within SkillsPark',
+            'description' => 'EdixPark is SkillsPark Tech Hub\'s digital education infrastructure platform for school operations, online learning and connected delivery through School, Learn and Suite.',
+            'image' => asset('images/edixpark/edixpark-logo.png'),
+        ])]);
+    }
+
     if (isset($pages[$path])) {
         [$view, $title] = $pages[$path];
         render('pages/' . $view, ['seo' => seo_defaults(['title' => $title . ' | SkillsPark Tech Hub', 'description' => $descriptions[$path] ?? content('site')['description']])]);
