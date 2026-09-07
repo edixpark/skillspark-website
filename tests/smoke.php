@@ -45,6 +45,14 @@ if ($notFoundStatus !== 404) $failures[] = "404 route returned {$notFoundStatus}
 echo sprintf("%3d %s\n", $notFoundStatus, '/definitely-not-a-route');
 
 $internalLinks = [];
+$internalHosts = [];
+$baseHost = parse_url($base, PHP_URL_HOST);
+if ($baseHost) $internalHosts[strtolower($baseHost)] = true;
+foreach ($htmlPages as $html) {
+    if (!preg_match('/<link rel="canonical" href="([^"]+)"/', $html, $canonicalMatch)) continue;
+    $canonicalHost = parse_url(html_entity_decode($canonicalMatch[1]), PHP_URL_HOST);
+    if ($canonicalHost) $internalHosts[strtolower($canonicalHost)] = true;
+}
 foreach ($htmlPages as $route => $html) {
     if (!preg_match_all('/(?:href|src)="([^"]+)"/', $html, $matches)) continue;
     foreach (array_unique($matches[1]) as $link) {
@@ -53,7 +61,7 @@ foreach ($htmlPages as $route => $html) {
         if ($scheme && !in_array(strtolower($scheme), ['http', 'https'], true)) continue;
         $path = parse_url($decoded, PHP_URL_PATH);
         $host = parse_url($decoded, PHP_URL_HOST);
-        if (!$path || ($host && !str_contains($base, $host))) continue;
+        if (!$path || ($host && !isset($internalHosts[strtolower($host)]))) continue;
         $internalLinks[$path] = $route;
     }
 }
