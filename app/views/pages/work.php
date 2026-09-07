@@ -6,93 +6,13 @@ $breadcrumbs = [['label' => 'Home', 'url' => '/'], ['label' => 'Work & Impact', 
 require ROOT_PATH . '/app/views/components/page-hero.php';
 $impact = content('impact');
 $areas = published($impact['areas']);
-$stories = published($impact['stories']);
+$tutorials = $impact['tutorials'];
 ?>
-
-<section class="section">
-    <div class="container">
-        <div class="section-heading reveal">
-            <p class="eyebrow">Impact areas</p>
-            <h2>What SkillsPark has actually contributed.</h2>
-            <p>These areas describe documented activity and owner-verified outcomes. They do not imply unsupported scale, income, accreditation or client results.</p>
-        </div>
-        <div class="card-grid card-grid--3">
-            <?php foreach ($areas as $area): ?>
-                <article class="card reveal">
-                    <span class="icon-box"><?= icon($area['icon']) ?></span>
-                    <h3><?= h($area['title']) ?></h3>
-                    <p><?= h($area['summary']) ?></p>
-                </article>
-            <?php endforeach; ?>
-        </div>
-    </div>
-</section>
-
-<section class="section section--soft">
-    <div class="container">
-        <div class="section-heading reveal">
-            <p class="eyebrow">Featured evidence</p>
-            <h2>Specific activities and outcomes.</h2>
-        </div>
-        <div class="case-list">
-            <?php foreach ($stories as $story): ?>
-                <article class="case-row reveal">
-                    <div>
-                        <span class="tag"><?= h($story['category']) ?></span>
-                        <h3><a href="<?= h(url($story['url'])) ?>"><?= h($story['title']) ?></a></h3>
-                        <p><?= h($story['summary']) ?></p>
-                    </div>
-                    <a class="circle-link" href="<?= h(url($story['url'])) ?>" aria-label="Explore <?= h($story['title']) ?>"><?= icon('arrow') ?></a>
-                </article>
-            <?php endforeach; ?>
-        </div>
-    </div>
-</section>
-
-<section class="section">
-    <div class="container story-block__grid">
-        <div class="story-art reveal">
-            <picture>
-                <source type="image/webp" srcset="<?= h(asset('images/training/hardware/skillspark-hands-on-hardware-training-480.webp')) ?> 480w, <?= h(asset('images/training/hardware/skillspark-hands-on-hardware-training-768.webp')) ?> 768w, <?= h(asset('images/training/hardware/skillspark-hands-on-hardware-training-1200.webp')) ?> 1200w" sizes="(max-width: 860px) calc(100vw - 32px), 50vw">
-                <img src="<?= h(asset('images/training/hardware/skillspark-hands-on-hardware-training-768.jpg')) ?>" srcset="<?= h(asset('images/training/hardware/skillspark-hands-on-hardware-training-480.jpg')) ?> 480w, <?= h(asset('images/training/hardware/skillspark-hands-on-hardware-training-768.jpg')) ?> 768w, <?= h(asset('images/training/hardware/skillspark-hands-on-hardware-training-1200.jpg')) ?> 1200w" sizes="(max-width: 860px) calc(100vw - 32px), 50vw" width="1200" height="900" loading="lazy" alt="Participants working on an open desktop computer during SkillsPark hardware training.">
-            </picture>
-        </div>
-        <div class="reveal">
-            <p class="eyebrow">SIWES & practical learning</p>
-            <h2>Experience grows through supervised practice.</h2>
-            <p>SkillsPark has trained SIWES students and provided hands-on technology exposure. Institution names, placement dates and duration remain unpublished until those details are confirmed.</p>
-            <a class="text-link" href="<?= h(url('/training/students-and-graduates')) ?>">Explore student training <?= icon('arrow') ?></a>
-        </div>
-    </div>
-</section>
-
-<section class="section section--navy">
-    <div class="container two-col">
-        <article class="card">
-            <p class="eyebrow">Community learning</p>
-            <h2>Useful learning beyond paid programmes.</h2>
-            <p>SkillsPark has provided free classes, practical workshops and free online tutorials to make technology learning more accessible.</p>
-            <a class="text-link" href="<?= h(url('/insights')) ?>">Explore insights and tutorials <?= icon('arrow') ?></a>
-        </article>
-        <article class="card">
-            <p class="eyebrow">Technology work</p>
-            <h2>Support for organizations building digital solutions.</h2>
-            <p>SkillsPark supports organizations with the design and development of technology products and digital solutions. Client and project identities remain private until publication permission is confirmed.</p>
-            <a class="text-link" href="<?= h(url('/services/technology-and-software')) ?>">Explore technology services <?= icon('arrow') ?></a>
-        </article>
-    </div>
-</section>
-
-<section class="section section--soft">
-    <div class="container work-links">
-        <a href="<?= h(url('/work/case-studies')) ?>"><span>Case studies</span><strong>Objectives, approaches and outcomes supported by available evidence.</strong><?= icon('arrow') ?></a>
-        <a href="<?= h(url('/gallery')) ?>"><span>Gallery</span><strong>Approved photographs of practical learning and activity.</strong><?= icon('arrow') ?></a>
-        <a href="<?= h(url('/work/partnerships')) ?>"><span>Partnerships</span><strong>Collaboration described only to the level currently verified.</strong><?= icon('arrow') ?></a>
-    </div>
-</section>
-
-<?php
-$ctaTitle = 'Discuss a project, training need or partnership.';
-$ctaText = 'Tell us the context and the outcome you are working toward. We will help define a practical next step.';
-require ROOT_PATH . '/app/views/components/cta.php';
-?>
+<section class="section"><div class="container"><div class="section-heading reveal"><p class="eyebrow">Impact areas</p><h2>Practical contribution across learning and technology.</h2><p>Each area is grounded in supplied evidence or owner-confirmed context, without unsupported claims about scale or results.</p></div><div class="card-grid card-grid--3"><?php foreach ($areas as $area): ?><article class="card reveal"><span class="icon-box"><?= icon($area['icon']) ?></span><h3><?= h($area['title']) ?></h3><p><?= h($area['summary']) ?></p></article><?php endforeach; ?></div></div></section>
+<section class="section section--soft impact-partnership" id="international-partnership"><div class="container story-block__grid"><div class="partner-logo-panel reveal"><picture><source type="image/webp" srcset="<?= h(asset('images/partners/aptech/aptech-computer-training-logo-200.webp')) ?>"><img src="<?= h(asset('images/partners/aptech/aptech-computer-training-logo-200.jpg')) ?>" width="200" height="200" loading="lazy" alt="Aptech Computer Training logo."></picture></div><div class="reveal"><p class="eyebrow">International partnership · October 2024</p><h2>International training partnership with Aptech Computer Training, Dubai</h2><p>In October 2024, SkillsPark Tech Hub entered into a strategic training partnership with Aptech Computer Training in Dubai. The collaboration includes curriculum guidance, instructor development, foundational training at SkillsPark, and pathways for learners to continue into advanced studies and certifications at Aptech.</p><a class="text-link" href="<?= h(url('/work/partnerships')) ?>">View partnership details <?= icon('arrow') ?></a></div></div></section>
+<section class="section story-block" id="advista-hub"><div class="container story-block__grid"><div class="story-art reveal"><picture><source type="image/webp" srcset="<?= h(asset('images/impact/advista-hub/skillspark-advista-hub-learner-outcome-480.webp')) ?> 480w, <?= h(asset('images/impact/advista-hub/skillspark-advista-hub-learner-outcome-768.webp')) ?> 768w, <?= h(asset('images/impact/advista-hub/skillspark-advista-hub-learner-outcome-1200.webp')) ?> 1200w" sizes="(max-width: 860px) calc(100vw - 32px), 50vw"><img src="<?= h(asset('images/impact/advista-hub/skillspark-advista-hub-learner-outcome-768.jpg')) ?>" srcset="<?= h(asset('images/impact/advista-hub/skillspark-advista-hub-learner-outcome-480.jpg')) ?> 480w, <?= h(asset('images/impact/advista-hub/skillspark-advista-hub-learner-outcome-768.jpg')) ?> 768w, <?= h(asset('images/impact/advista-hub/skillspark-advista-hub-learner-outcome-1200.jpg')) ?> 1200w" sizes="(max-width: 860px) calc(100vw - 32px), 50vw" width="1200" height="900" loading="lazy" alt="Advista Hub presentation displayed during a SkillsPark activity."></picture></div><div class="reveal"><p class="eyebrow">Learner entrepreneurship</p><h2>From learning digital skills to building Advista Hub</h2><p>A learner trained through SkillsPark later went on to establish Advista Hub, an advertising-focused platform that helps promote people, products and businesses using practical digital skills such as video editing, graphic design and website design.</p><a class="text-link" href="<?= h(url('/work/case-studies/advista-hub-learner-outcome')) ?>">Read the learner story <?= icon('arrow') ?></a></div></div></section>
+<section class="section section--navy" id="practical-hardware-skills"><div class="container story-block__grid story-block__grid--reverse"><div class="reveal"><p class="eyebrow">Women & practical skills</p><h2>Practical hardware skills creating everyday opportunities</h2><p>SkillsPark has trained women in practical computer hardware maintenance. Some participants now apply those skills by helping people around them diagnose and solve everyday computer problems from home.</p><a class="text-link text-link--light" href="<?= h(url('/training/program/computer-hardware-repairs')) ?>">Explore hardware training <?= icon('arrow') ?></a></div><div class="story-art reveal"><picture><source type="image/webp" srcset="<?= h(asset('images/impact/women-hardware/skillspark-women-hardware-training-480.webp')) ?> 480w, <?= h(asset('images/impact/women-hardware/skillspark-women-hardware-training-768.webp')) ?> 768w, <?= h(asset('images/impact/women-hardware/skillspark-women-hardware-training-1200.webp')) ?> 1200w" sizes="(max-width: 860px) calc(100vw - 32px), 50vw"><img src="<?= h(asset('images/impact/women-hardware/skillspark-women-hardware-training-768.jpg')) ?>" srcset="<?= h(asset('images/impact/women-hardware/skillspark-women-hardware-training-480.jpg')) ?> 480w, <?= h(asset('images/impact/women-hardware/skillspark-women-hardware-training-768.jpg')) ?> 768w, <?= h(asset('images/impact/women-hardware/skillspark-women-hardware-training-1200.jpg')) ?> 1200w" sizes="(max-width: 860px) calc(100vw - 32px), 50vw" width="1200" height="900" loading="lazy" alt="Women taking part in practical computer hardware training at SkillsPark."></picture></div></div></section>
+<section class="section" id="siwes-practical-learning"><div class="container story-block__grid"><div class="story-art reveal"><picture><source type="image/webp" srcset="<?= h(asset('images/impact/siwes/skillspark-siwes-practical-learning-480.webp')) ?> 480w, <?= h(asset('images/impact/siwes/skillspark-siwes-practical-learning-768.webp')) ?> 768w, <?= h(asset('images/impact/siwes/skillspark-siwes-practical-learning-1200.webp')) ?> 1200w" sizes="(max-width: 860px) calc(100vw - 32px), 50vw"><img src="<?= h(asset('images/impact/siwes/skillspark-siwes-practical-learning-768.jpg')) ?>" srcset="<?= h(asset('images/impact/siwes/skillspark-siwes-practical-learning-480.jpg')) ?> 480w, <?= h(asset('images/impact/siwes/skillspark-siwes-practical-learning-768.jpg')) ?> 768w, <?= h(asset('images/impact/siwes/skillspark-siwes-practical-learning-1200.jpg')) ?> 1200w" sizes="(max-width: 860px) calc(100vw - 32px), 50vw" width="1200" height="675" loading="lazy" alt="Participant in a SkillsPark technology learning environment."></picture></div><div class="reveal"><p class="eyebrow">SIWES & practical learning</p><h2>Practical experience for SIWES students</h2><p>SkillsPark provides SIWES students with practical exposure to technology, helping them connect academic learning with hands-on skills and real working environments.</p><a class="text-link" href="<?= h(url('/training/students-and-graduates')) ?>">Explore student training <?= icon('arrow') ?></a></div></div></section>
+<section class="section section--soft" id="community-learning"><div class="container two-col"><article class="statement-card reveal"><p class="eyebrow">Community learning</p><h2>Learning beyond the classroom</h2><p>SkillsPark extends access to technology learning through free classes, practical workshops and online tutorials, helping more people learn at their own pace and continue developing practical skills.</p><div class="button-row"><?php foreach ($tutorials as $tutorial): $tutorialUrl = safe_external_url($tutorial['url']); if ($tutorialUrl): ?><a class="button button--outline" href="<?= h($tutorialUrl) ?>" target="_blank" rel="noopener noreferrer"><?= h($tutorial['label']) ?></a><?php endif; endforeach; ?></div><a class="text-link" href="<?= h(url('/insights#tutorials')) ?>">Explore insights and tutorials <?= icon('arrow') ?></a></article><article class="technology-card reveal"><div class="technology-card__image"><img src="<?= h(asset('images/story/skillspark-learning-space-wide-768.jpg')) ?>" srcset="<?= h(asset('images/story/skillspark-learning-space-wide-768.jpg')) ?> 768w, <?= h(asset('images/story/skillspark-learning-space-wide-1200.jpg')) ?> 1200w, <?= h(asset('images/story/skillspark-learning-space-wide-1600.jpg')) ?> 1600w" sizes="(max-width: 860px) calc(100vw - 32px), 50vw" width="1600" height="900" loading="lazy" alt="A SkillsPark learning space with participants working on laptops."></div><div><p class="eyebrow">Technology work</p><h2>Digital solutions for organizations</h2><p>SkillsPark also supports organizations with the design and development of technology products, websites and digital solutions.</p><a class="text-link" href="<?= h(url('/services/technology-and-software')) ?>">Explore technology services <?= icon('arrow') ?></a></div></article></div></section>
+<section class="section"><div class="container work-links"><a href="<?= h(url('/work/case-studies')) ?>"><span>Case studies</span><strong>Explore evidence-backed learner and training stories.</strong><?= icon('arrow') ?></a><a href="<?= h(url('/gallery')) ?>"><span>Gallery</span><strong>See approved photographs of practical learning.</strong><?= icon('arrow') ?></a><a href="<?= h(url('/work/partnerships')) ?>"><span>Partnerships</span><strong>Read about verified collaboration and its scope.</strong><?= icon('arrow') ?></a></div></section>
+<?php $ctaTitle = 'Discuss a project, training need or partnership.'; $ctaText = 'Tell us the context and the outcome you are working toward. We will help define a practical next step.'; require ROOT_PATH . '/app/views/components/cta.php'; ?>
