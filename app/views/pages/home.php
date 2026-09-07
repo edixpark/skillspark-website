@@ -297,7 +297,8 @@ $founder = content('founder');
 <?php
 $ctaTitle = 'What could technology help you do better?';
 $ctaText = 'Bring the goal, the challenge or the early idea. We will help you shape a practical next step.';
-$ctaLabel = 'Request a Consultation';
+$ctaLabel = 'Contact SkillsPark';
+$ctaUrl = '/contact';
 $ctaSecondaryLabel = 'WhatsApp SkillsPark';
 $ctaSecondaryUrl = whatsapp_url('Hello SkillsPark, I would like to make an enquiry.');
 require ROOT_PATH . '/app/views/components/cta.php';

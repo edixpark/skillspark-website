@@ -34,7 +34,7 @@
                 </li>
                 <?php endforeach; ?>
             </ul>
-            <a class="button button--small" href="<?= h(url('/request-consultation')) ?>">Request a Consultation</a>
+            <a class="button button--small" href="<?= h(url('/contact')) ?>">Contact SkillsPark</a>
         </nav>
     </div>
 </header>
