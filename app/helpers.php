@@ -94,7 +94,7 @@ function render(string $view, array $data = [], int $status = 200): never
 function icon(string $name, string $class = ''): string
 {
     $safe = preg_replace('/[^a-z0-9-]/', '', strtolower($name));
-    return '<svg class="icon ' . h($class) . '" aria-hidden="true"><use href="' . h(asset('icons/sprite.svg')) . '#' . h($safe) . '"></use></svg>';
+    return '<svg class="icon ' . h($class) . '" aria-hidden="true" focusable="false"><use href="' . h(asset('icons/sprite.svg')) . '#' . h($safe) . '"></use></svg>';
 }
 
 function excerpt(string $text, int $length = 150): string

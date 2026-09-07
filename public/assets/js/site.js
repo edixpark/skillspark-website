@@ -3,6 +3,8 @@
   document.documentElement.classList.add('js');
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const formErrorSummary = document.querySelector('[data-form-error-summary]');
+  if (formErrorSummary) formErrorSummary.focus();
   const toggle = document.querySelector('[data-nav-toggle]');
   const nav = document.querySelector('[data-nav]');
 
