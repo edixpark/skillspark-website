@@ -225,15 +225,19 @@ $founder = content('founder');
 <section class="section edix-feature">
     <div class="container edix-feature__grid">
         <div class="reveal">
-            <p class="eyebrow">SkillsPark product</p>
-            <h2>EdixPark: digital infrastructure for school operations and online learning.</h2>
-            <p>EdixPark connects the founder’s journey from teaching technology to building technology for educational institutions.</p>
-            <a class="button" href="<?= h(url('/edixpark')) ?>">Discover EdixPark</a>
+            <p class="eyebrow">Education technology platform</p>
+            <img class="edixpark-logo edixpark-logo--feature" src="<?= h(asset('images/edixpark/edixpark-logo.png')) ?>" width="1600" height="305" alt="EdixPark">
+            <h2>Flexible digital infrastructure for schools.</h2>
+            <p>EdixPark is SkillsPark's distinct education-technology platform, designed to give schools digital infrastructure that adapts to their operations, learning and institutional growth.</p>
+            <div class="button-row"><a class="button" href="<?= h(url('/edixpark')) ?>">Explore EdixPark</a><a class="button button--outline" href="https://edixpark.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit EdixPark.com (opens in a new tab)">Visit EdixPark.com <?= icon('arrow') ?></a></div>
         </div>
-        <div class="product-map reveal">
-            <?php foreach (['Administration', 'Academics', 'Communication', 'Learning', 'Reporting'] as $area): ?>
+        <div class="edixpark-home-panel reveal">
+            <p>Built within the SkillsPark technology ecosystem. Operates with its own product identity and platform experience.</p>
+            <div>
+            <?php foreach (['Leadership & Roles', 'Academic Structure', 'Sections & Classes', 'Finance', 'Branding'] as $area): ?>
                 <span><?= h($area) ?></span>
             <?php endforeach; ?>
+            </div>
         </div>
     </div>
 </section>

@@ -4,19 +4,15 @@ declare(strict_types=1);
 
 return [
     'title' => 'EdixPark',
-    'positioning' => 'EdixPark is digital infrastructure for school operations and online learning.',
-    'summary' => 'Connected to the SkillsPark journey, EdixPark translates experience in technology education into practical digital infrastructure for educational institutions.',
-    'products' => [
-        ['title' => 'EdixPark School', 'summary' => 'A product direction focused on the day-to-day digital needs of school communities.'],
-        ['title' => 'EdixPark Learn', 'summary' => 'A product direction focused on organized digital learning experiences.'],
-        ['title' => 'EdixPark Suite', 'summary' => 'A broader product direction connecting school operations, learning and digital growth.'],
-    ],
-    // Keep capabilities high-level until each feature is verified for the current product release.
-    'areas' => ['Administration', 'Academics', 'Finance', 'Communication', 'Learning', 'Payments', 'Reporting', 'Digital growth'],
-    // Add only verified live HTTPS URLs.
-    'buttons' => [
-        ['label' => 'Visit EdixPark', 'url' => ''],
-        ['label' => 'Request a Demo', 'url' => ''],
-        ['label' => 'Explore the Platform', 'url' => ''],
+    'website' => 'https://edixpark.com/',
+    'positioning' => 'A distinct education-technology platform built within the SkillsPark technology ecosystem.',
+    'summary' => 'EdixPark provides flexible digital infrastructure for schools, helping institutions shape operations and digital learning around how they actually work.',
+    'flexibility' => [
+        ['title' => 'Leadership & Roles', 'summary' => 'Reflect responsibility structures that make sense for the institution.'],
+        ['title' => 'Academic Structure', 'summary' => 'Adapt the platform to the school\'s own academic arrangement.'],
+        ['title' => 'Sections & Classes', 'summary' => 'Organize sections and classes around the school\'s established setup.'],
+        ['title' => 'Finance', 'summary' => 'Accommodate the financial structure the school uses.'],
+        ['title' => 'Branding', 'summary' => 'Keep the school\'s identity present in its digital environment.'],
+        ['title' => 'Operational Configuration', 'summary' => 'Shape workflows around real day-to-day operations.'],
     ],
 ];
