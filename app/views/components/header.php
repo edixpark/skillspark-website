@@ -1,9 +1,4 @@
-<?php $nav = content('navigation'); $announcement = $site['announcement']; ?>
-<?php if (($announcement['enabled'] ?? false) === true): ?>
-<div class="announcement">
-    <div class="container announcement__inner"><span><?= h($announcement['text']) ?></span><a href="<?= h(url($announcement['url'])) ?>"><?= h($announcement['label']) ?> <?= icon('arrow') ?></a></div>
-</div>
-<?php endif; ?>
+<?php $nav = content('navigation'); ?>
 <header class="site-header" data-header>
     <div class="container site-header__inner">
         <a class="brand" href="<?= h(url('/')) ?>" aria-label="SkillsPark Tech Hub home">

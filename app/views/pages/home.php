@@ -41,8 +41,19 @@ $founder = content('founder');
                 <a class="button button--outline-light" href="<?= h(url('/training')) ?>">Explore Training Programs</a>
             </div>
         </div>
-        <div class="hero__visual reveal">
-            <img src="<?= h(asset('images/hero-abstract.svg')) ?>" width="720" height="720" alt="Branded abstract composition representing learning, business transformation and education technology" fetchpriority="high">
+        <div class="hero__visual hero-media reveal">
+            <picture class="hero-media__primary">
+                <source type="image/webp" srcset="<?= h(asset('images/training/hardware/skillspark-hands-on-hardware-training-480.webp')) ?> 480w, <?= h(asset('images/training/hardware/skillspark-hands-on-hardware-training-768.webp')) ?> 768w, <?= h(asset('images/training/hardware/skillspark-hands-on-hardware-training-1200.webp')) ?> 1200w" sizes="(max-width: 600px) calc(100vw - 32px), (max-width: 860px) 62vw, (max-width: 1280px) 28vw, 360px">
+                <img src="<?= h(asset('images/training/hardware/skillspark-hands-on-hardware-training-768.jpg')) ?>" srcset="<?= h(asset('images/training/hardware/skillspark-hands-on-hardware-training-480.jpg')) ?> 480w, <?= h(asset('images/training/hardware/skillspark-hands-on-hardware-training-768.jpg')) ?> 768w, <?= h(asset('images/training/hardware/skillspark-hands-on-hardware-training-1200.jpg')) ?> 1200w" sizes="(max-width: 600px) calc(100vw - 32px), (max-width: 860px) 62vw, (max-width: 1280px) 28vw, 360px" width="1200" height="900" alt="Participants working on an open desktop computer during SkillsPark hardware training." fetchpriority="high" decoding="async">
+            </picture>
+            <picture class="hero-media__support">
+                <source type="image/webp" srcset="<?= h(asset('images/training/young-learners/skillspark-young-learners-software-class-480.webp')) ?> 480w, <?= h(asset('images/training/young-learners/skillspark-young-learners-software-class-768.webp')) ?> 768w, <?= h(asset('images/training/young-learners/skillspark-young-learners-software-class-1200.webp')) ?> 1200w" sizes="(max-width: 860px) 32vw, (max-width: 1280px) 16vw, 210px">
+                <img src="<?= h(asset('images/training/young-learners/skillspark-young-learners-software-class-480.jpg')) ?>" srcset="<?= h(asset('images/training/young-learners/skillspark-young-learners-software-class-480.jpg')) ?> 480w, <?= h(asset('images/training/young-learners/skillspark-young-learners-software-class-768.jpg')) ?> 768w, <?= h(asset('images/training/young-learners/skillspark-young-learners-software-class-1200.jpg')) ?> 1200w" sizes="(max-width: 860px) 32vw, (max-width: 1280px) 16vw, 210px" width="1200" height="900" alt="Young learners working on laptops during a SkillsPark technology class." decoding="async">
+            </picture>
+            <picture class="hero-media__support">
+                <source type="image/webp" srcset="<?= h(asset('images/training/creative-media/skillspark-video-editing-training-480.webp')) ?> 480w, <?= h(asset('images/training/creative-media/skillspark-video-editing-training-768.webp')) ?> 768w, <?= h(asset('images/training/creative-media/skillspark-video-editing-training-1200.webp')) ?> 1200w" sizes="(max-width: 860px) 32vw, (max-width: 1280px) 16vw, 210px">
+                <img src="<?= h(asset('images/training/creative-media/skillspark-video-editing-training-480.jpg')) ?>" srcset="<?= h(asset('images/training/creative-media/skillspark-video-editing-training-480.jpg')) ?> 480w, <?= h(asset('images/training/creative-media/skillspark-video-editing-training-768.jpg')) ?> 768w, <?= h(asset('images/training/creative-media/skillspark-video-editing-training-1200.jpg')) ?> 1200w" sizes="(max-width: 860px) 32vw, (max-width: 1280px) 16vw, 210px" width="1200" height="900" alt="A participant practising video editing on a laptop during SkillsPark training." decoding="async">
+            </picture>
         </div>
     </div>
 </section>
