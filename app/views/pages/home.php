@@ -116,7 +116,7 @@ $founder = content('founder');
 
 <section class="section story-block">
     <div class="container story-block__grid">
-        <div class="story-art reveal">
+        <div class="story-art story-art--home reveal">
             <picture>
                 <source type="image/webp" srcset="<?= h(asset('images/story/skillspark-learning-space-wide-768.webp')) ?> 768w, <?= h(asset('images/story/skillspark-learning-space-wide-1200.webp')) ?> 1200w, <?= h(asset('images/story/skillspark-learning-space-wide-1600.webp')) ?> 1600w" sizes="(max-width: 860px) calc(100vw - 32px), 50vw">
                 <img src="<?= h(asset('images/story/skillspark-learning-space-wide-768.jpg')) ?>" srcset="<?= h(asset('images/story/skillspark-learning-space-wide-768.jpg')) ?> 768w, <?= h(asset('images/story/skillspark-learning-space-wide-1200.jpg')) ?> 1200w, <?= h(asset('images/story/skillspark-learning-space-wide-1600.jpg')) ?> 1600w" sizes="(max-width: 860px) calc(100vw - 32px), 50vw" width="1600" height="900" loading="lazy" alt="A SkillsPark learning space with participants working on laptops.">
