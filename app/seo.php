@@ -9,7 +9,7 @@ function seo_defaults(array $page = []): array
         'title' => $site['name'] . ' | ' . $site['primary_message'],
         'description' => $site['description'],
         'canonical' => url(current_path()),
-        'image' => asset('brand/social-card.svg'),
+        'image' => asset('images/branding/skillspark-social-card.png'),
         'type' => 'website',
         'robots' => 'index,follow,max-image-preview:large',
     ], $page);
@@ -21,7 +21,7 @@ function organization_schema(): array
     $schema = [
         '@context' => 'https://schema.org', '@type' => 'Organization',
         'name' => $site['name'], 'url' => url('/'),
-        'logo' => asset('brand/skillspark-wordmark.svg'),
+        'logo' => asset('images/branding/skillspark-logo.png'),
         'description' => $site['description'], 'foundingDate' => '2024',
     ];
     $email = config('contact.email');

@@ -18,8 +18,8 @@ $site = content('site');
     <meta property="og:image" content="<?= h($seo['image']) ?>">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="theme-color" content="#071a3a">
-    <link rel="icon" href="<?= h(asset('brand/favicon.svg')) ?>" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="<?= h(asset('brand/apple-touch-icon.svg')) ?>">
+    <link rel="icon" href="<?= h(asset('images/branding/skillspark-icon.png')) ?>" type="image/png" sizes="512x512">
+    <link rel="apple-touch-icon" href="<?= h(asset('images/branding/skillspark-icon.png')) ?>">
     <link rel="manifest" href="<?= h(url('/site.webmanifest')) ?>">
     <link rel="stylesheet" href="<?= h(asset('css/site.css')) ?>">
     <script type="application/ld+json"><?= json_for_html(organization_schema()) ?></script>

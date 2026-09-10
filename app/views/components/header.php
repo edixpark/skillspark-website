@@ -7,7 +7,7 @@
 <header class="site-header" data-header>
     <div class="container site-header__inner">
         <a class="brand" href="<?= h(url('/')) ?>" aria-label="SkillsPark Tech Hub home">
-            <img src="<?= h(asset('brand/skillspark-wordmark.svg')) ?>" width="190" height="48" alt="SkillsPark Tech Hub">
+            <img src="<?= h(asset('images/branding/skillspark-logo.png')) ?>" width="190" height="34" alt="SkillsPark Tech Hub">
         </a>
         <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
             <span class="nav-toggle__lines" aria-hidden="true"></span><span class="sr-only">Open menu</span>
