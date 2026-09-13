@@ -186,9 +186,9 @@ $founder = content('founder');
         <div class="gallery-grid gallery-grid--preview">
             <?php foreach (array_slice($galleryPreview, 0, 4) as $item): ?>
                 <figure class="gallery-item reveal">
-                    <picture>
-                        <?php if (!empty($item['webp_srcset'])): ?><source type="image/webp" srcset="<?= h($item['webp_srcset']) ?>" sizes="(max-width: 350px) calc((100vw - 32px) / 2), (max-width: 600px) calc((100vw - 40px) / 2), (max-width: 860px) calc((100vw - 44px) / 2), 33vw"><?php endif; ?>
-                        <img src="<?= h(url($item['image'])) ?>" <?= !empty($item['srcset']) ? 'srcset="'.h($item['srcset']).'" sizes="(max-width: 350px) calc((100vw - 32px) / 2), (max-width: 600px) calc((100vw - 40px) / 2), (max-width: 860px) calc((100vw - 44px) / 2), 33vw"' : '' ?> width="720" height="540" loading="lazy" alt="<?= h($item['alt']) ?>">
+                    <picture class="gallery-preview__media">
+                        <?php if (!empty($item['webp_srcset'])): ?><source type="image/webp" srcset="<?= h($item['webp_srcset']) ?>" sizes="(max-width: 600px) calc((100vw - 40px) / 2), (max-width: 860px) calc((100vw - 44px) / 2), (max-width: 1100px) calc((100vw - 72px) / 3), 285px"><?php endif; ?>
+                        <img src="<?= h(url($item['image'])) ?>" <?= !empty($item['srcset']) ? 'srcset="'.h($item['srcset']).'" sizes="(max-width: 600px) calc((100vw - 40px) / 2), (max-width: 860px) calc((100vw - 44px) / 2), (max-width: 1100px) calc((100vw - 72px) / 3), 285px"' : '' ?> width="720" height="540" loading="lazy" alt="<?= h($item['alt']) ?>">
                     </picture>
                     <figcaption>
                         <strong><?= h($item['title']) ?></strong>

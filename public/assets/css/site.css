@@ -63,16 +63,16 @@ h1,h2,h3{letter-spacing:0}.container.narrow,.narrow{max-width:var(--container-na
 
 /* Desktop hero viewport fit; preserve tablet and mobile typography. */
 /* Compact homepage preview; full gallery and larger viewports retain their layout. */
+.home-gallery-preview .gallery-grid--preview{grid-template-columns:repeat(4,minmax(0,1fr));align-items:start}.home-gallery-preview .gallery-item{min-width:0;align-self:start}.home-gallery-preview .gallery-item:nth-child(2){transform:none}.home-gallery-preview .gallery-preview__media{display:block;width:100%;aspect-ratio:4/3;overflow:hidden;border-radius:var(--radius-lg)}.home-gallery-preview .gallery-preview__media img{width:100%;height:100%;aspect-ratio:auto;object-fit:cover;object-position:center}.home-gallery-preview figcaption{gap:4px;padding:var(--space-2) 0 0;line-height:1.4;overflow-wrap:anywhere}.home-gallery-preview figcaption strong{font-size:.95rem;font-weight:700}.home-gallery-preview figcaption span{font-size:.875rem}
+@media (max-width:1100px){
+    .home-gallery-preview .gallery-grid--preview{grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-3)}
+}
 @media (max-width:860px){
     .home-gallery-preview{padding-block:calc(var(--space-5) + var(--space-4))}
     .home-gallery-preview .split-heading{gap:var(--space-1)}
     .home-gallery-preview h2{margin-bottom:0}
     .home-gallery-preview .text-link{min-height:44px}
     .home-gallery-preview .gallery-grid--preview{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-2)}
-    .home-gallery-preview .gallery-item{min-width:0}
-    .home-gallery-preview .gallery-item:nth-child(2){transform:none}
-    .home-gallery-preview picture{display:block}
-    .home-gallery-preview .gallery-item img{height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:var(--radius)}
     .home-gallery-preview figcaption{gap:4px;padding:var(--space-1) 0 0;line-height:1.4;overflow-wrap:anywhere}
     .home-gallery-preview figcaption strong{font-size:.9rem}
     .home-gallery-preview figcaption span{font-size:.8rem}
