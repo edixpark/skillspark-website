@@ -25,6 +25,10 @@ $gallery = array_values(array_filter(
     static fn ($item) => ($item['consent_confirmed'] ?? false) === true
 ));
 $achievements = published(content('achievements'));
+$galleryPreview = array_merge(
+    array_slice($gallery, 0, 3),
+    array_filter(array_slice($gallery, 3), static fn ($item) => $item['homepage_preview'] ?? false)
+);
 $partners = published(content('partners'));
 $insights = published(content('insights'));
 $founder = content('founder');
@@ -180,11 +184,11 @@ $founder = content('founder');
             <a class="text-link" href="<?= h(url('/gallery')) ?>">Open gallery <?= icon('arrow') ?></a>
         </div>
         <div class="gallery-grid gallery-grid--preview">
-            <?php foreach (array_slice($gallery, 0, 3) as $item): ?>
+            <?php foreach (array_slice($galleryPreview, 0, 4) as $item): ?>
                 <figure class="gallery-item reveal">
                     <picture>
-                        <?php if (!empty($item['webp_srcset'])): ?><source type="image/webp" srcset="<?= h($item['webp_srcset']) ?>" sizes="(max-width: 350px) calc((100vw - 32px) / 2), (max-width: 600px) calc((100vw - 40px) / 2), 33vw"><?php endif; ?>
-                        <img src="<?= h(url($item['image'])) ?>" <?= !empty($item['srcset']) ? 'srcset="'.h($item['srcset']).'" sizes="(max-width: 350px) calc((100vw - 32px) / 2), (max-width: 600px) calc((100vw - 40px) / 2), 33vw"' : '' ?> width="720" height="540" loading="lazy" alt="<?= h($item['alt']) ?>">
+                        <?php if (!empty($item['webp_srcset'])): ?><source type="image/webp" srcset="<?= h($item['webp_srcset']) ?>" sizes="(max-width: 350px) calc((100vw - 32px) / 2), (max-width: 600px) calc((100vw - 40px) / 2), (max-width: 860px) calc((100vw - 44px) / 2), 33vw"><?php endif; ?>
+                        <img src="<?= h(url($item['image'])) ?>" <?= !empty($item['srcset']) ? 'srcset="'.h($item['srcset']).'" sizes="(max-width: 350px) calc((100vw - 32px) / 2), (max-width: 600px) calc((100vw - 40px) / 2), (max-width: 860px) calc((100vw - 44px) / 2), 33vw"' : '' ?> width="720" height="540" loading="lazy" alt="<?= h($item['alt']) ?>">
                     </picture>
                     <figcaption>
                         <strong><?= h($item['title']) ?></strong>
