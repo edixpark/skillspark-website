@@ -248,6 +248,10 @@ $founder = content('founder');
         </div>
         <div class="edixpark-home-panel reveal">
             <p>One product family for structured operations, branded learning and connected institutional delivery.</p>
+            <picture class="edixpark-platform-preview">
+                <source type="image/webp" srcset="<?= h(asset('images/edixpark/edixpark-platform-preview-640.webp')) ?> 640w, <?= h(asset('images/edixpark/edixpark-platform-preview-960.webp')) ?> 960w, <?= h(asset('images/edixpark/edixpark-platform-preview-1200.webp')) ?> 1200w" sizes="(max-width: 860px) calc(100vw - 86px), 520px">
+                <img src="<?= h(asset('images/edixpark/edixpark-platform-preview-960.jpg')) ?>" srcset="<?= h(asset('images/edixpark/edixpark-platform-preview-640.jpg')) ?> 640w, <?= h(asset('images/edixpark/edixpark-platform-preview-960.jpg')) ?> 960w, <?= h(asset('images/edixpark/edixpark-platform-preview-1200.jpg')) ?> 1200w" sizes="(max-width: 860px) calc(100vw - 86px), 520px" width="1200" height="675" loading="lazy" alt="EdixPark digital education platform interface">
+            </picture>
             <div>
                 <?php foreach (['EdixPark School', 'EdixPark Learn', 'EdixPark Suite'] as $area): ?>
                     <span><?= h($area) ?></span>

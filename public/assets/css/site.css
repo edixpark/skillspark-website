@@ -121,3 +121,8 @@ h1,h2,h3{letter-spacing:0}.container.narrow,.narrow{max-width:var(--container-na
 .founder-media{display:block;width:100%;max-width:520px;aspect-ratio:4/5;align-self:start;overflow:hidden;border-radius:var(--radius-lg);background:var(--pale-orange)}
 .founder-media--large{max-width:560px}
 .founder-media .founder-photo{width:100%;height:100%;object-fit:cover;object-position:center top}
+
+/* Homepage EdixPark product preview */
+.edixpark-home-panel{justify-content:flex-start;gap:26px}
+.edixpark-platform-preview{display:block;width:100%;overflow:hidden;border:1px solid rgba(255,255,255,.24);border-radius:12px;background:#fff}
+.edixpark-platform-preview img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
