@@ -9,6 +9,7 @@ $site = content('site');
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?= h($seo['title']) ?></title>
     <meta name="description" content="<?= h($seo['description']) ?>">
+    <meta name="google-site-verification" content="_YAs5zGEjBp7lIwfSGu77-5G9CbmeNvysx0s5u4oOn4" />
     <meta name="robots" content="<?= h($seo['robots']) ?>">
     <link rel="canonical" href="<?= h($seo['canonical']) ?>">
     <meta property="og:type" content="<?= h($seo['type']) ?>">
