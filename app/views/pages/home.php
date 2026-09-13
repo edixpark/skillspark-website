@@ -259,7 +259,10 @@ $founder = content('founder');
 
 <section class="section">
     <div class="container founder-preview">
-        <div class="founder-placeholder reveal" aria-hidden="true"><?= icon('person') ?></div>
+        <picture class="founder-media reveal">
+            <source type="image/webp" srcset="<?= h($founder['photo_webp_srcset']) ?>" sizes="(max-width: 860px) min(100vw - 32px, 520px), 520px">
+            <img class="founder-photo" src="<?= h(url($founder['photo'])) ?>" srcset="<?= h($founder['photo_srcset']) ?>" sizes="(max-width: 860px) min(100vw - 32px, 520px), 520px" width="720" height="900" loading="lazy" alt="<?= h($founder['photo_alt']) ?>">
+        </picture>
         <div class="reveal">
             <p class="eyebrow">The founder’s journey</p>
             <h2>From teaching technology to building technology.</h2>
