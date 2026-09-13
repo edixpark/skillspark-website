@@ -170,7 +170,7 @@ $founder = content('founder');
     </div>
 </section>
 
-<section class="section section--soft">
+<section class="section section--soft home-gallery-preview">
     <div class="container">
         <div class="section-heading split-heading">
             <div>
@@ -183,8 +183,8 @@ $founder = content('founder');
             <?php foreach (array_slice($gallery, 0, 3) as $item): ?>
                 <figure class="gallery-item reveal">
                     <picture>
-                        <?php if (!empty($item['webp_srcset'])): ?><source type="image/webp" srcset="<?= h($item['webp_srcset']) ?>" sizes="(max-width: 600px) 100vw, 33vw"><?php endif; ?>
-                        <img src="<?= h(url($item['image'])) ?>" <?= !empty($item['srcset']) ? 'srcset="'.h($item['srcset']).'" sizes="(max-width: 600px) 100vw, 33vw"' : '' ?> width="720" height="540" loading="lazy" alt="<?= h($item['alt']) ?>">
+                        <?php if (!empty($item['webp_srcset'])): ?><source type="image/webp" srcset="<?= h($item['webp_srcset']) ?>" sizes="(max-width: 350px) calc((100vw - 32px) / 2), (max-width: 600px) calc((100vw - 40px) / 2), 33vw"><?php endif; ?>
+                        <img src="<?= h(url($item['image'])) ?>" <?= !empty($item['srcset']) ? 'srcset="'.h($item['srcset']).'" sizes="(max-width: 350px) calc((100vw - 32px) / 2), (max-width: 600px) calc((100vw - 40px) / 2), 33vw"' : '' ?> width="720" height="540" loading="lazy" alt="<?= h($item['alt']) ?>">
                     </picture>
                     <figcaption>
                         <strong><?= h($item['title']) ?></strong>
