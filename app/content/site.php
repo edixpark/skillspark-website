@@ -5,6 +5,7 @@ declare(strict_types=1);
 return [
     'name' => 'SkillsPark Tech Hub',
     'short_name' => 'SkillsPark',
+    'url' => 'https://skillspark.edixpark.com/',
     'tagline' => 'Providing innovative solutions to individuals and businesses.',
     'primary_message' => 'Building people. Transforming businesses. Powering education.',
     'description' => 'SkillsPark Tech Hub provides practical technology training, creative services, digital transformation and software solutions for individuals, schools, businesses and organizations.',

@@ -33,7 +33,7 @@ function route_request(string $method, string $path): void
         '/work/partnerships' => 'SkillsPark’s approach to local and international training, technology and education partnerships.',
     ];
     $titles = [
-        '/' => 'SkillsPark Tech Hub | Technology Services and Practical Training',
+        '/' => 'SkillsPark Tech Hub | Technology Services & Practical Training',
         '/about' => 'About SkillsPark Tech Hub | Technology, Training and EdixPark',
         '/services' => 'Technology Services | SkillsPark Tech Hub',
         '/training' => 'Practical Technology Training | SkillsPark Tech Hub',
@@ -60,7 +60,7 @@ function route_request(string $method, string $path): void
         render('pages/edixpark', ['seo' => seo_defaults([
             'title' => 'EdixPark | Education Technology Platform Built Within SkillsPark',
             'description' => 'EdixPark is SkillsPark Tech Hub\'s digital education infrastructure platform for school operations, online learning and connected delivery through School, Learn and Suite.',
-            'image' => asset('images/edixpark/edixpark-logo.png'),
+            'image' => canonical_url('/assets/images/edixpark/edixpark-logo.png'),
         ])]);
     }
 
@@ -96,7 +96,7 @@ function route_request(string $method, string $path): void
         if ($article) render('pages/article', ['article' => $article, 'seo' => seo_defaults(['title' => $article['seo_title'], 'description' => $article['seo_description'], 'type' => 'article'])]);
     }
     if ($path === '/sitemap.xml') { output_sitemap(); return; }
-    if ($path === '/robots.txt') { header('Content-Type: text/plain; charset=UTF-8'); echo "User-agent: *\nAllow: /\nSitemap: " . url('/sitemap.xml') . "\n"; return; }
+    if ($path === '/robots.txt') { header('Content-Type: text/plain; charset=UTF-8'); echo "User-agent: *\nAllow: /\nSitemap: " . canonical_url('/sitemap.xml') . "\n"; return; }
     render('errors/404', ['seo' => seo_defaults(['title' => 'Page not found | SkillsPark', 'description' => 'The requested page could not be found.', 'robots' => 'noindex,nofollow'])], 404);
 }
 
@@ -111,6 +111,6 @@ function output_sitemap(): void
     foreach (published(content('insights')) as $item) $paths[] = '/insights/' . $item['slug'];
     header('Content-Type: application/xml; charset=UTF-8');
     echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n";
-    foreach (array_unique($paths) as $path) echo '  <url><loc>' . h(url($path)) . "</loc></url>\n";
+    foreach (array_unique($paths) as $path) echo '  <url><loc>' . h(canonical_url($path)) . "</loc></url>\n";
     echo "</urlset>\n";
 }

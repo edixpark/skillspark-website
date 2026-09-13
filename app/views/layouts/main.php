@@ -12,6 +12,7 @@ $site = content('site');
     <meta name="robots" content="<?= h($seo['robots']) ?>">
     <link rel="canonical" href="<?= h($seo['canonical']) ?>">
     <meta property="og:type" content="<?= h($seo['type']) ?>">
+    <meta property="og:site_name" content="<?= h($site['name']) ?>">
     <meta property="og:title" content="<?= h($seo['title']) ?>">
     <meta property="og:description" content="<?= h($seo['description']) ?>">
     <meta property="og:url" content="<?= h($seo['canonical']) ?>">
@@ -22,7 +23,7 @@ $site = content('site');
     <link rel="apple-touch-icon" href="<?= h(asset('images/branding/skillspark-icon.png')) ?>">
     <link rel="manifest" href="<?= h(url('/site.webmanifest')) ?>">
     <link rel="stylesheet" href="<?= h(asset('css/site.css')) ?>">
-    <script type="application/ld+json"><?= json_for_html(organization_schema()) ?></script>
+    <script type="application/ld+json"><?= json_for_html(site_schema($seo)) ?></script>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to content</a>
