@@ -124,9 +124,9 @@ h1,h2,h3{letter-spacing:0}.container.narrow,.narrow{max-width:var(--container-na
 
 /* Compact homepage founder spacing without changing the approved portrait crop. */
 @media (max-width:600px){
-    .home-founder{padding-top:40px}
-    .home-founder .founder-preview{gap:28px}
-    .home-founder .founder-media{width:90%;max-width:350px;margin-inline:auto}
+    .home-founder{padding-top:32px}
+    .home-founder .founder-preview{gap:24px}
+    .home-founder .founder-media{width:min(76vw,290px);max-width:290px;margin-inline:auto}
 }
 
 /* Homepage EdixPark product preview */
