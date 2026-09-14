@@ -122,6 +122,13 @@ h1,h2,h3{letter-spacing:0}.container.narrow,.narrow{max-width:var(--container-na
 .founder-media--large{max-width:560px}
 .founder-media .founder-photo{width:100%;height:100%;object-fit:cover;object-position:center top}
 
+/* Compact homepage founder spacing without changing the approved portrait crop. */
+@media (max-width:600px){
+    .home-founder{padding-top:40px}
+    .home-founder .founder-preview{gap:28px}
+    .home-founder .founder-media{width:90%;max-width:350px;margin-inline:auto}
+}
+
 /* Homepage EdixPark product preview */
 .edixpark-home-panel{justify-content:flex-start;gap:26px}
 .edixpark-platform-preview{display:block;width:100%;overflow:hidden;border:1px solid rgba(255,255,255,.24);border-radius:12px;background:#fff}

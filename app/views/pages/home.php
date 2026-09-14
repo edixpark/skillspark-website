@@ -261,7 +261,7 @@ $founder = content('founder');
     </div>
 </section>
 
-<section class="section">
+<section class="section home-founder">
     <div class="container founder-preview">
         <picture class="founder-media reveal">
             <source type="image/webp" srcset="<?= h($founder['photo_webp_srcset']) ?>" sizes="(max-width: 860px) min(100vw - 32px, 520px), 520px">
