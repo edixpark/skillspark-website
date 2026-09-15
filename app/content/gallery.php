@@ -23,4 +23,18 @@ return [
         'internal_permission_note' => 'Selected from the owner-supplied Temp folder under the explicit request to publish a fourth homepage gallery image. Visually reviewed; no readable private records or account information observed. Individual identities and ownership details were not supplied.',
         'published' => true, 'sort_order' => 5, 'homepage_preview' => true,
     ],
+    [
+        'id' => '3d-modelling-animation-teamwork', 'album' => 'Creative projects', 'type' => 'image',
+        'title' => '3D modelling and animation teamwork', 'category' => 'Projects',
+        'image' => '/assets/images/gallery/3d-modelling-animation-teamwork/3d-modelling-animation-teamwork-768.jpg',
+        'srcset' => '/assets/images/gallery/3d-modelling-animation-teamwork/3d-modelling-animation-teamwork-480.jpg 480w, /assets/images/gallery/3d-modelling-animation-teamwork/3d-modelling-animation-teamwork-768.jpg 768w, /assets/images/gallery/3d-modelling-animation-teamwork/3d-modelling-animation-teamwork-1200.jpg 1200w',
+        'webp_srcset' => '/assets/images/gallery/3d-modelling-animation-teamwork/3d-modelling-animation-teamwork-480.webp 480w, /assets/images/gallery/3d-modelling-animation-teamwork/3d-modelling-animation-teamwork-768.webp 768w, /assets/images/gallery/3d-modelling-animation-teamwork/3d-modelling-animation-teamwork-1200.webp 1200w',
+        'width' => 768, 'height' => 576, 'video_url' => '',
+        'alt' => 'SkillsPark learners working together during 3D modelling and animation practice',
+        'caption' => 'Learners work together while practising 3D modelling and animation skills.',
+        'date' => '', 'location' => '', 'consent_confirmed' => true,
+        'subject_type' => 'people; age not recorded', 'photographer' => '', 'image_owner' => '',
+        'internal_permission_note' => 'Owner-supplied and approved for public website use in the September 2026 content expansion batch. Individual identities and ownership details were not supplied.',
+        'published' => true, 'sort_order' => 6,
+    ],
 ];

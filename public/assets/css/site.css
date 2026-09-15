@@ -83,6 +83,24 @@ h1,h2,h3{letter-spacing:0}.container.narrow,.narrow{max-width:var(--container-na
 /* Keep the homepage story photograph sized by its own landscape frame. */
 .story-art--home{width:100%;aspect-ratio:16/9;align-self:start;overflow:hidden;border-radius:var(--radius-lg)}.story-art--home picture{width:100%;height:100%}.story-art--home img{width:100%;height:100%;aspect-ratio:auto;object-fit:cover;object-position:center}
 
+/* Editorial media groups keep multi-image stories premium without oversized panels. */
+.editorial-media-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);grid-template-rows:repeat(2,minmax(0,1fr));gap:var(--space-2);align-self:start}
+.editorial-media{display:block;width:100%;min-width:0;overflow:hidden;border-radius:var(--radius-lg);aspect-ratio:4/3;background:var(--soft)}
+.editorial-media--large{grid-row:1/-1;aspect-ratio:4/5}
+.editorial-media img{width:100%;height:100%;aspect-ratio:auto;object-fit:cover;object-position:center}
+.editorial-media-grid--duo{grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);grid-template-rows:1fr}
+.editorial-media-grid--duo .editorial-media--large{grid-row:auto;aspect-ratio:4/3}
+.editorial-media-grid--visitors .editorial-media--large{aspect-ratio:4/3}
+.founder-book-note{margin-top:var(--space-4);padding:14px 18px;background:var(--pale-blue);border-left:4px solid var(--blue);border-radius:var(--radius-sm);font-weight:800}
+@media (max-width:860px){
+    .editorial-media-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:auto}
+    .editorial-media-grid .editorial-media--large{grid-column:1/-1;grid-row:auto;aspect-ratio:4/3}
+    .editorial-media{aspect-ratio:4/3}
+}
+@media (max-width:420px){
+    .editorial-media-grid{gap:var(--space-1)}
+}
+
 /* Training evidence photographs use compact frames that fit programme detail copy. */
 .training-evidence-section .story-block__grid{align-items:center}
 .training-story-media{display:block;width:100%;aspect-ratio:16/10;overflow:hidden;border-radius:var(--radius-lg);align-self:start}
@@ -109,7 +127,7 @@ h1,h2,h3{letter-spacing:0}.container.narrow,.narrow{max-width:var(--container-na
 .work-evidence-section .work-story-media--hardware img{object-position:center 42%}
 .work-evidence-section .work-story-media--siwes img{object-position:center 28%}
 .work-evidence-section .work-story-media--technology img{object-position:center}
-.work-evidence-section .work-story-media--youth img,.work-evidence-section .work-story-media--stakeholder img{object-position:center}
+.work-evidence-section .work-story-media--youth img,.work-evidence-section .work-story-media--stakeholder img,.work-evidence-section .work-story-media--workshop img,.work-evidence-section .work-story-media--teamwork img{object-position:center}
 .work-evidence-section .technology-card{align-self:start}
 .work-evidence-section .technology-card__image img{aspect-ratio:auto}
 @media (min-width:861px){
