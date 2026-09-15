@@ -83,12 +83,48 @@ h1,h2,h3{letter-spacing:0}.container.narrow,.narrow{max-width:var(--container-na
 /* Keep the homepage story photograph sized by its own landscape frame. */
 .story-art--home{width:100%;aspect-ratio:16/9;align-self:start;overflow:hidden;border-radius:var(--radius-lg)}.story-art--home picture{width:100%;height:100%}.story-art--home img{width:100%;height:100%;aspect-ratio:auto;object-fit:cover;object-position:center}
 
-/* Work evidence: the frame, rather than HTML image dimensions, sets mobile height. */
+/* Training evidence photographs use compact frames that fit programme detail copy. */
+.training-evidence-section .story-block__grid{align-items:center}
+.training-story-media{display:block;width:100%;aspect-ratio:16/10;overflow:hidden;border-radius:var(--radius-lg);align-self:start}
+.training-story-media--portrait{aspect-ratio:4/5;max-width:420px}
+.training-story-media img{width:100%;height:100%;aspect-ratio:auto;object-fit:cover;object-position:center}
 @media (max-width:860px){
-    .work-story-media{width:100%;aspect-ratio:4/3;overflow:hidden;border-radius:var(--radius-lg);align-self:start}
-    .work-story-media--technology{aspect-ratio:16/9}
-    .work-story-media picture{display:block;width:100%;height:100%}
-    .work-story-media img{width:100%;height:100%;aspect-ratio:auto;object-fit:cover;object-position:center}
+    .training-story-media{aspect-ratio:4/3;max-width:560px}
+    .training-story-media--portrait{aspect-ratio:4/5;max-width:384px}
+}
+@media (max-width:600px){
+    .training-story-media,.training-story-media--portrait{max-width:100%}
+    .training-story-media--portrait{width:min(100%,288px)}
+}
+
+/* Work evidence: the wrapper owns the crop so media never stretches to match adjacent text. */
+.work-evidence-section .story-block__grid{align-items:center}
+.work-evidence-section .two-col{align-items:start}
+.work-evidence-section .work-story-media{width:100%;aspect-ratio:4/3;overflow:hidden;border-radius:var(--radius-lg);align-self:start}
+.work-evidence-section .work-story-media--siwes{aspect-ratio:1/1;max-width:480px}
+.work-evidence-section .work-story-media--technology{aspect-ratio:16/10}
+.work-evidence-section .work-story-media picture{display:block;width:100%;height:100%}
+.work-evidence-section .work-story-media img{width:100%;height:100%;aspect-ratio:auto;object-fit:cover;object-position:center}
+.work-evidence-section .work-story-media--advista img{object-position:center}
+.work-evidence-section .work-story-media--hardware img{object-position:center 42%}
+.work-evidence-section .work-story-media--siwes img{object-position:center 28%}
+.work-evidence-section .work-story-media--technology img{object-position:center}
+.work-evidence-section .work-story-media--youth img,.work-evidence-section .work-story-media--stakeholder img{object-position:center}
+.work-evidence-section .technology-card{align-self:start}
+.work-evidence-section .technology-card__image img{aspect-ratio:auto}
+@media (min-width:861px){
+    .work-evidence-section{padding-block:clamp(64px,7vw,104px)}
+    .work-evidence-section .story-block__grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+    .work-evidence-section .story-block__grid--reverse{align-items:center}
+    .work-evidence-section .two-col{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+}
+@media (max-width:860px){
+    .work-evidence-section .work-story-media{aspect-ratio:4/3}
+    .work-evidence-section .work-story-media--siwes{aspect-ratio:4/3;max-width:100%}
+    .work-evidence-section .work-story-media--technology{aspect-ratio:4/3}
+}
+@media (min-width:601px) and (max-width:860px){
+    .work-evidence-section .work-story-media{max-width:560px}
 }
 @media (max-width:600px){
     .work-evidence-section,.work-impact-areas{padding-block:calc(var(--space-5) + var(--space-4))}

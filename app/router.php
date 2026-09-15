@@ -81,7 +81,7 @@ function route_request(string $method, string $path): void
     }
     if (preg_match('#^/training/program/([a-z0-9-]+)$#', $path, $match)) {
         $program = find_by_slug(content('training')['programs'], $match[1]);
-        if ($program) render('pages/program-detail', ['program' => $program, 'seo' => seo_defaults(['title' => $program['title'] . ' | SkillsPark Training', 'description' => $program['summary']])]);
+        if ($program) render('pages/program-detail', ['program' => $program, 'seo' => seo_defaults(['title' => $program['seo_title'] ?? $program['title'] . ' | SkillsPark Training', 'description' => $program['seo_description'] ?? $program['summary']])]);
     }
     if (preg_match('#^/solutions/(schools|businesses|organizations|individuals)$#', $path, $match)) {
         $audience = find_by_slug(array_map(static fn ($item) => $item + ['published' => true], content('site')['audiences']), $match[1]);
