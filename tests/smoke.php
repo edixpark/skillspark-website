@@ -3,9 +3,16 @@
 declare(strict_types=1);
 
 $base = rtrim($argv[1] ?? 'http://127.0.0.1:8000', '/');
-$routes = ['/', '/about', '/services', '/training', '/training/programs', '/work', '/gallery', '/edixpark', '/founder', '/insights', '/contact', '/request-consultation', '/privacy-policy', '/terms', '/abuja', '/work/case-studies', '/work/achievements', '/work/partnerships', '/solutions/schools', '/solutions/businesses', '/solutions/organizations', '/solutions/individuals', '/services/technology-and-software', '/services/web-design-and-development', '/services/business-digital-transformation', '/services/branding-and-graphic-design', '/services/video-and-media-production', '/services/3d-modelling-and-animation', '/services/social-media-and-digital-presence', '/services/hardware-and-technical-support', '/training/children-and-teenagers', '/training/students-and-graduates', '/training/adults-and-entrepreneurs', '/training/schools', '/training/corporate-training', '/training/program/web-development-foundations', '/training/program/creative-design', '/training/program/robotics-creative-technology', '/training/program/ai-digital-productivity', '/training/program/computer-hardware-repairs', '/work/case-studies/practical-software-classes', '/work/case-studies/hands-on-hardware-classes', '/work/case-studies/advista-hub-learner-outcome', '/insights/what-makes-technology-training-practical', '/insights/digital-presence-check', '/insights/children-technology-responsibly', '/sitemap.xml', '/robots.txt'];
+$routes = ['/', '/about', '/services', '/training', '/training/programs', '/work', '/gallery', '/edixpark', '/founder', '/insights', '/contact', '/request-consultation', '/privacy-policy', '/terms', '/abuja', '/work/case-studies', '/work/achievements', '/work/partnerships', '/solutions/schools', '/solutions/businesses', '/solutions/organizations', '/solutions/individuals', '/services/technology-and-software', '/services/web-design-and-development', '/services/business-digital-transformation', '/services/branding-and-graphic-design', '/services/video-and-media-production', '/services/3d-modelling-and-animation', '/services/social-media-and-digital-presence', '/services/hardware-and-technical-support', '/training/children-and-teenagers', '/training/students-and-graduates', '/training/adults-and-entrepreneurs', '/training/schools', '/training/corporate-training', '/training/program/digital-skills-switch', '/training/program/digital-skills-masterclass', '/training/program/technical-skills-program', '/training/program/business-in-the-digital-age', '/training/program/train-the-trainers', '/training/program/special-classes', '/training/program/computer-hardware-repairs', '/work/case-studies/practical-software-classes', '/work/case-studies/hands-on-hardware-classes', '/work/case-studies/advista-hub-learner-outcome', '/work/case-studies/learner-built-website-project', '/insights/what-makes-technology-training-practical', '/insights/digital-presence-check', '/insights/children-technology-responsibly', '/sitemap.xml', '/robots.txt'];
+$legacyRedirects = [
+    '/training/program/web-development-foundations' => '/training/program/digital-skills-masterclass',
+    '/training/program/creative-design' => '/training/program/digital-skills-switch',
+    '/training/program/robotics-creative-technology' => '/training/program/technical-skills-program',
+    '/training/program/ai-digital-productivity' => '/training/program/business-in-the-digital-age',
+];
 $failures = []; $htmlPages = [];
 $titles = [];
+$canonicalOrigin = $base;
 
 function request_url(string $url, string $method = 'GET', string $body = '', array $headers = []): array {
     $options = ['http' => ['method' => $method, 'ignore_errors' => true, 'timeout' => 8, 'header' => implode("\r\n", $headers), 'content' => $body]];
@@ -26,10 +33,32 @@ foreach ($routes as $route) {
         if ($pageTitle === '') $failures[] = "{$route} has no page title.";
         if (isset($titles[$pageTitle])) $failures[] = "Duplicate page title on {$route} and {$titles[$pageTitle]}: {$pageTitle}";
         $titles[$pageTitle] = $route;
+        if ($route === '/' && preg_match('/<link rel="canonical" href="([^"]+)"/', $body, $canonicalMatch)) {
+            $canonicalParts = parse_url(html_entity_decode($canonicalMatch[1]));
+            if (!empty($canonicalParts['scheme']) && !empty($canonicalParts['host'])) {
+                $canonicalOrigin = $canonicalParts['scheme'] . '://' . $canonicalParts['host'];
+                if (!empty($canonicalParts['port'])) $canonicalOrigin .= ':' . $canonicalParts['port'];
+            }
+        }
         if (!preg_match('/<meta name="description" content="[^"]+">/', $body)) $failures[] = "{$route} has no meta description.";
         if (!str_contains($body, '<h1')) $failures[] = "{$route} has no H1.";
     }
     echo sprintf("%3d %s\n", $status, $route);
+}
+
+foreach ($legacyRedirects as $route => $destination) {
+    [$status, , $responseHeaders] = request_url($base . $route);
+    $location = '';
+    foreach ($responseHeaders as $header) {
+        if (stripos($header, 'Location:') === 0) {
+            $location = trim(substr($header, strlen('Location:')));
+            break;
+        }
+    }
+    $expectedLocation = $canonicalOrigin . $destination;
+    if ($status !== 301) $failures[] = "{$route} returned {$status}; expected 301";
+    if ($location !== $expectedLocation) $failures[] = "{$route} redirected to {$location}; expected {$expectedLocation}";
+    echo sprintf("%3d %s -> %s\n", $status, $route, $location);
 }
 
 [, $homeBody, $homeHeaders] = request_url($base . '/');

@@ -4,6 +4,12 @@ declare(strict_types=1);
 
 function route_request(string $method, string $path): void
 {
+    $legacyTrainingProgramRedirects = [
+        '/training/program/web-development-foundations' => '/training/program/digital-skills-masterclass',
+        '/training/program/creative-design' => '/training/program/digital-skills-switch',
+        '/training/program/robotics-creative-technology' => '/training/program/technical-skills-program',
+        '/training/program/ai-digital-productivity' => '/training/program/business-in-the-digital-age',
+    ];
     $pages = [
         '/' => ['home', 'Home'], '/about' => ['about', 'About SkillsPark'], '/services' => ['services', 'Services'],
         '/training' => ['training', 'Training'], '/training/programs' => ['programs', 'Training Programs'], '/work' => ['work', 'Work & Impact'],
@@ -17,7 +23,7 @@ function route_request(string $method, string $path): void
         '/about' => 'Learn how SkillsPark Tech Hub grew from practical technology training in Kano into a technology, creative-services and education-technology hub.',
         '/services' => 'Explore SkillsPark Tech Hub technology services, including software, web development, digital transformation, branding, media and technical support.',
         '/training' => 'Explore practical technology training from SkillsPark Tech Hub for children, students, adults, schools and organizational teams.',
-        '/training/programs' => 'Explore practical SkillsPark programs in web development, design, robotics, AI productivity and hardware.',
+        '/training/programs' => 'Explore practical SkillsPark Tech Hub training programs in digital skills, creative technology, technical skills, business, instructor development and personalized learning.',
         '/work' => 'Explore SkillsPark Tech Hub work and impact through responsibly documented training, partnerships, learner stories and technology activity.',
         '/gallery' => 'An accessible, consent-aware visual record of SkillsPark classes, programs and project work.',
         '/edixpark' => 'EdixPark is a distinct education-technology platform built within the SkillsPark ecosystem, providing flexible digital infrastructure for schools.',
@@ -55,6 +61,11 @@ function route_request(string $method, string $path): void
         handle_form($path === '/contact' ? 'contact' : 'consultation');
     }
     if ($method !== 'GET') render('errors/404', ['seo' => seo_defaults(['title' => 'Page not found | SkillsPark', 'robots' => 'noindex,nofollow'])], 404);
+
+    if (isset($legacyTrainingProgramRedirects[$path])) {
+        header('Location: ' . canonical_url($legacyTrainingProgramRedirects[$path]), true, 301);
+        exit;
+    }
 
     if ($path === '/edixpark') {
         render('pages/edixpark', ['seo' => seo_defaults([

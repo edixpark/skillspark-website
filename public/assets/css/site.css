@@ -102,6 +102,31 @@ h1,h2,h3{letter-spacing:0}.container.narrow,.narrow{max-width:var(--container-na
 }
 
 /* Training evidence photographs use compact frames that fit programme detail copy. */
+.program-selector-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-4)}
+.program-selector-card{display:flex;min-height:320px;flex-direction:column;padding:clamp(24px,3vw,34px);border:1px solid var(--line);border-top:4px solid var(--blue);border-radius:var(--radius);background:#fff;box-shadow:var(--shadow-card)}
+.program-selector-card:nth-child(3n+2){border-top-color:var(--orange)}
+.program-selector-card:nth-child(3n){border-top-color:var(--green)}
+.program-selector-card h3 a{color:inherit;text-decoration:none}
+.program-selector-card p{color:var(--slate)}
+.program-selector-card__ideal{margin-top:auto;padding-top:var(--space-3);font-size:.94rem}
+.course-catalogue-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-4)}
+.course-category-card{padding:clamp(24px,3vw,34px);border:1px solid var(--line);border-radius:var(--radius);background:#fff}
+.course-category-card>p{color:var(--slate)}
+.course-mini-list{display:grid;gap:var(--space-2);margin-top:var(--space-4)}
+.course-mini-card{padding:var(--space-3);border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--soft)}
+.course-mini-card h4{margin:0 0 6px;font-size:1rem;line-height:1.25}
+.course-mini-card p{margin-bottom:8px;color:var(--slate);font-size:.93rem;line-height:1.5}
+.course-mini-card small{display:block;color:var(--muted);font-weight:750}
+.course-mini-card .text-link{margin-top:var(--space-2);font-size:.9rem}
+.training-chip-list{display:flex;flex-wrap:wrap;gap:var(--space-2)}
+.training-chip-list span{padding:10px 14px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--slate);font-weight:800}
+@media (max-width:980px){
+    .program-selector-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:700px){
+    .program-selector-grid,.course-catalogue-grid{grid-template-columns:1fr}
+    .program-selector-card{min-height:0}
+}
 .training-evidence-section .story-block__grid{align-items:center}
 .training-story-media{display:block;width:100%;aspect-ratio:16/10;overflow:hidden;border-radius:var(--radius-lg);align-self:start}
 .training-story-media--portrait{aspect-ratio:4/5;max-width:420px}
