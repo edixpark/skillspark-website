@@ -2,7 +2,7 @@ const { spawn } = require('child_process');
 const fs = require('fs');
 
 const chromePath = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
-const base = 'http://127.0.0.1:8011';
+const base = 'http://skillspark.local';
 const port = 9333;
 const widths = [320, 390, 430, 768, 1024, 1440, 1920];
 const routes = [
@@ -210,5 +210,6 @@ main().catch((error) => {
   console.error(error);
   process.exit(1);
 });
+
 
 
